@@ -238,7 +238,7 @@ include '../assets/php/footer.php';
         if (data === '11') {
 
           var handler = PaystackPop.setup({
-            key: <?php echo $payment_gateway['public'] ?>,
+            key: '<?php echo $payment_gateway['public'] ?>',
             email: user,
             amount: payable * 100,
             currency: 'NGN',
