@@ -35,7 +35,7 @@ if (isset($_POST['tx_reference'])) {
 
   );
   $payment_gateway = $model->getRows($tblName, $conditions);
-
+$key = '"Authorization: Bearer '.$payment_gateway['secret'].'"';
 //Verify transaction reference details with paystack
 $curl = curl_init();
 curl_setopt_array($curl, array(
@@ -47,7 +47,7 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "GET",
   CURLOPT_HTTPHEADER => array(
-    "Authorization: Bearer ".$payment_gateway['secret'],
+    $key,
     "Cache-Control: no-cache",
   ),
 ));
