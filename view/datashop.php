@@ -129,7 +129,7 @@ if (isset($_SESSION['uniqueid'])) {
                                         success: function(data) {
 
                                             if (data >= 0) {
-                                                var cartbutton = '<button class="btn btn-outline-gradient gradient-1 rounded-pill me-1 mb-2 mb-md-0" onclick="window.location.replace("./mycart.php");"><i class="uil uil-shopping-cart"></i><span>'+data+' item(s) in cart</span></button>';
+                                                var cartbutton = '<a href="./mycart.php" class="btn btn-outline-gradient gradient-1 rounded-pill me-1 mb-2 mb-md-0 " ><i class="uil uil-shopping-cart"></i><span>'+data+' item(s) in cart</span></a>';
                                                 $("#cart_button").html(cartbutton);
                                                 $("#cart_notify").html(data);
                                                 $("#<?php echo $view['prod_sku']; ?>").hide();
@@ -160,7 +160,7 @@ if (isset($_SESSION['uniqueid'])) {
                                         success: function(data) {
 
                                             if (data >= 0) {
-                                                var cartbutton = '<button class="btn btn-outline-gradient gradient-1 rounded-pill me-1 mb-2 mb-md-0 " onclick="window.location.replace("./mycart.php");"><i class="uil uil-shopping-cart"></i><span>'+data+' item(s) in cart</span></button>';
+                                                var cartbutton = '<a href="./mycart.php" class="btn btn-outline-gradient gradient-1 rounded-pill me-1 mb-2 mb-md-0 " ><i class="uil uil-shopping-cart"></i><span>'+data+' item(s) in cart</span></a>';
                                                 $("#cart_button").html(cartbutton);
                                                 $("#cart_notify").html(data);
                                                 $("#<?php echo $view['prod_sku']; ?>").show();
