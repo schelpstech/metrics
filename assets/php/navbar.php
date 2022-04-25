@@ -77,7 +77,7 @@
                 <a class="nav-link position-relative d-flex flex-row align-items-center" onclick="window.location.replace('./mycart.php');">
                   <i class="uil uil-shopping-cart"></i>
                     <span class="badge badge-cart bg-primary"><div id="cart_notify">
-                        <?php if (isset($_SESSION['cart_check'])) { echo $_SESSION['cart_check'];} else{echo 0;}?>  
+                       >> 
                         </div>
                     </span>
                 </a>
