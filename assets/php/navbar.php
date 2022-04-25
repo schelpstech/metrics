@@ -2,7 +2,7 @@
         <div class="container flex-lg-row flex-nowrap align-items-center">
           <div class="navbar-brand w-100">
             <a href="../../view/index.php">
-              <img src="../assets/img/web/logonw.png" srcset="../assets/img/logo-dark@2x.png 2x" alt="" />
+              <img src="../assets/img/web/weblogo.png" srcset="../assets/img/web/weblogo.png 2x" alt="" />
             </a>
           </div>
           <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
@@ -20,6 +20,7 @@
                   <ul class="dropdown-menu">
                     <li class="nav-item"><a class="dropdown-item" href="./aboutus.php">CrunchEconometrix</a></li>
                     <li class="nav-item"><a class="dropdown-item" href="./ngoziadeleye.php">Founder - Ngozi Adeleye</a></li>
+                    <li class="nav-item"><a class="dropdown-item" href="./ngoziadeleye.php">Download CV - Ngozi Adeleye</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -48,7 +49,7 @@
               <!-- /.navbar-nav -->
               <div class="offcanvas-footer d-lg-none">
                 <div>
-                <a href="mailto:cruncheconometrix@gmail.com" class="link-body">cruncheconometrix@gmail.com</a><br /> <a href="tel://+2347035253909" class="link-body">+234 703 525 3909</a>
+                <a href="mailto:cruncheconometrix@gmail.com" class="link-body">cruncheconometrix@gmail.com</a>
            <br />
                   <nav class="nav social social-white mt-4">
                     <a href="https://twitter.com/crunchmetrix"><i class="uil uil-twitter"></i></a>

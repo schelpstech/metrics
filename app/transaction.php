@@ -46,7 +46,7 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "GET",
   CURLOPT_HTTPHEADER => array(
-    '"'.'Authorization: Bearer '.$payment_gateway['secret'].'"',
+    "Authorization: Bearer sk_test_5cfd6d4ebaaa28e178ca697148bbee69e9d86e65",
     "Cache-Control: no-cache",
   ),
 ));
@@ -114,7 +114,7 @@ $paid_at = $verify_response['data']['paid_at'];
                     echo 115;
                 }
   }else{
-      echo ' Authorization: Bearer '.$payment_gateway['secret'];
+      echo '"'.'Authorization: Bearer '.$payment_gateway['secret'].'"';
   }        
                
 // transaction data

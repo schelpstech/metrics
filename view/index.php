@@ -139,7 +139,7 @@ include '../assets/php/navbar.php';
     <div class="row gy-6 align-items-center mb-14 mb-md-18">
       <div class="col-lg-2">
         <h3 class="display-4 mb-5">Online Courses</h3>
-        <small class="lead fs-lg mb-5">Buy Comprehensive courses on Econometrics using Stata, Excel and EViews analytical software</small>
+        <small class="lead fs-lg mb-5">Buy comprehensive courses on Econometrics using Stata, Excel and EViews analytical software</small>
 
       </div>
       <!--/column -->
@@ -201,7 +201,7 @@ include '../assets/php/navbar.php';
         <div class="row gx-lg-8 gx-xl-12 gy-10">
           <div class="col-lg-6">
             <h3 class="display-4 mb-4">Frequently Asked Questions</h3>
-            <p class="lead fs-lg mb-0">If you don't see an answer to your question, you can send us an email from our contact form.</p>
+            <p class="lead fs-lg mb-0">If you don't see an answer to your question, you can send us an email using our contact form.</p>
           </div>
           <!--/column -->
           <div class="col-lg-6">

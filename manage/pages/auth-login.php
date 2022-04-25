@@ -33,7 +33,7 @@ require_once('../../controller/start.inc.php');
               <div class="card-header">
              
                       
-                      <img alt="image" src="../../assets/img/web/logonw.png" class="header-logo" class="avatar-icon" width=100  />
+                      <img alt="image" src="../../assets/img/web/weblogo.png" class="header-logo" class="avatar-icon" width=100  />
                    
                 <h4>CrunchEconometrix</h4>
               </div>

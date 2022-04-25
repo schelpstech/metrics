@@ -151,8 +151,8 @@
             <ul class="list-unstyled text-reset mb-0">
               <li><a href="#" data-bs-toggle="modal" data-bs-target="#modal-signin">Sign in</a></li>
               <li><a href="#" data-bs-toggle="modal" data-bs-target="#modal-signup">Register</a></li>
-              <li><a href="#">Terms of Use</a></li>
-              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="https://cruncheconometrix.teachable.com/">Teachable</a></li>
+              <li><a href="https://www.researchgate.net/profile/Ngozi-Adeleye">Research Gate</a></li>
             </ul>
           </div>
           <!-- /.widget -->
@@ -162,11 +162,11 @@
           <div class="widget">
             <h4 class="widget-title  mb-3">Learn More</h4>
             <ul class="list-unstyled text-reset mb-0">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Publications</a></li>
-              <li><a href="#">Trainings</a></li>
-              <li><a href="#">Datasets and Dofiles</a></li>
-              <li><a href="#">Courses</a></li>
+              <li><a href="./aboutus.php">About Us</a></li>
+              <li><a href="./datashop.php">Shop</a></li>
+              <li><a href="https://blog.cruncheconometrix.com.ng">Blog</a></li>
+              <li><a href="https://www.youtube.com/c/CrunchEconometrix">YouTube</a></li>
+              <li><a href="./contact.php">Contact</a></li>
             </ul>
           </div>
           <!-- /.widget -->

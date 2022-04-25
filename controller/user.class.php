@@ -159,14 +159,9 @@ class User
     // Log Out User
     public function log_out_user()
     {
-        // Check if user session has been set
-        unset($_SESSION['uniqueid']);
-        unset($_SESSION['token']);
-        unset($_SESSION['msg']);
         session_unset();
-        
-        
-    }
+        session_destroy();
+   }
 
     // Redirect user
     public function redirect($url)

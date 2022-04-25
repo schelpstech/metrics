@@ -29,7 +29,7 @@ if (isset($_SESSION['uniqueid']) && isset($_SESSION['token'])) {
   <meta name="keywords" content="Econometrics, Data Analysis, CrunchEconometrix, Econometrics Tutorials, Data Analysis Tutorials">
   <meta name="author" content="CrunchEconometrix, Ngozi Adeleye">
   <title>CrunchEconometrix</title>
-  <link rel="shortcut icon" href="../assets/img/web/logonw.png">
+  <link rel="shortcut icon" href="../assets/img/web/weblogo.png">
   <link rel="stylesheet" href="../assets/css/plugins.css">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/colors/aqua.css">
