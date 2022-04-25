@@ -20,7 +20,7 @@
                   <ul class="dropdown-menu">
                     <li class="nav-item"><a class="dropdown-item" href="./aboutus.php">CrunchEconometrix</a></li>
                     <li class="nav-item"><a class="dropdown-item" href="./ngoziadeleye.php">Founder - Ngozi Adeleye</a></li>
-                    <li class="nav-item"><a class="dropdown-item" href="./ngoziadeleye.php">Download CV - Ngozi Adeleye</a></li>
+                    <li class="nav-item"><a class="dropdown-item" href="../assets/img/web/NgADELEYE_PhD Economics -Crunch.pdf">Download CV - Ngozi Adeleye</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">

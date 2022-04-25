@@ -43,8 +43,8 @@ include '../assets/php/navbar.php';
               and for those who want to improve their understanding
               of econometrics and data analysis</p>
             <div class="d-flex justify-content-center justify-content-lg-start" data-cues="slideInDown" data-group="page-title-buttons" data-delay="900">
-              <span><a href="#" class="btn btn-lg btn-primary rounded-pill me-2">Explore Now</a></span>
-              <span><a href="#" class="btn btn-lg btn-outline-primary rounded-pill">Contact Us</a></span>
+              <span><a href="./aboutus.php" class="btn btn-lg btn-primary rounded-pill me-2">Explore Now</a></span>
+              <span><a href="./contact.php" class="btn btn-lg btn-outline-primary rounded-pill">Contact Us</a></span>
             </div>
           </div>
           <!--/column -->
