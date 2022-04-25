@@ -34,7 +34,7 @@ if (isset($_POST['tx_reference'])) {
     )
 
   );
-  $payment_gateway = $model->getRows($tblName, $conditions);
+  $payment_gateway = $model->getRows($tblName, $conditions); 
 //Verify transaction reference details with paystack
 $curl = curl_init();
 curl_setopt_array($curl, array(
@@ -46,7 +46,7 @@ curl_setopt_array($curl, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "GET",
   CURLOPT_HTTPHEADER => array(
-    "Authorization: Bearer sk_test_5cfd6d4ebaaa28e178ca697148bbee69e9d86e65",
+    'Authorization: Bearer '.$payment_gateway['secret'],
     "Cache-Control: no-cache",
   ),
 ));
@@ -59,7 +59,7 @@ if ($err) {
   }else{
 $verify_response = json_decode($response, true);
   }
-  if($verify_response['status'] == 'true'){
+  if($verify_response['status'] == true){
 
 $paymentstatus = $verify_response['data']['status'];
 $transref = $verify_response['data']['reference'];
@@ -69,6 +69,7 @@ $paid_at = $verify_response['data']['paid_at'];
     if (  ($paymentstatus ==  $status) 
             && ($transref == $reference)  
             && (($chargeamount/100) == $trans_amount)) {
+              $tblName = 'trans_tbl';
 
                 $cartData = array(
                     'trans_status' => 1,
@@ -106,7 +107,9 @@ $paid_at = $verify_response['data']['paid_at'];
                     );
                     $insert = $model->insert_data($tablename, $cartData);
                 }
-                        echo 100;
+                unset($_SESSION['cart_token']);       
+                unset($_SESSION['cart_check']);       
+                echo 100;
                     }else{
                         echo 114;
                     }

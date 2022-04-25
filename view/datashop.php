@@ -158,7 +158,7 @@ if (isset($_SESSION['uniqueid'])) {
                                         },
                                         success: function(data) {
 
-                                            if (data.includes('</a>')) {
+                                            if (data >= 0) {
 
                                                 $("#cart_notify").html(data);
                                                 $("#<?php echo $view['prod_sku']; ?>").show();
