@@ -99,7 +99,7 @@ if (isset($_SESSION['uniqueid'])) {
                             <div class="post-header">
                                 <div class="d-flex flex-row align-items-center justify-content-between mb-2">
                                     <div class="post-category text-ash mb-0"> 
-                                        <h2 class="price"> <ins><span class="amount">&#8358;<?php echo $view['prod_price']; ?></span></ins></h2>
+                                        <h2 class="price"> <ins><span class="amount">&#8358;<?php echo $view['prod_price']; ?>.00</span></ins></h2>
                                     </div>
                                     <span class="post-category text-ash mb-0"><?php echo $view['prod_type'] ?></span>
                                 </div>
