@@ -44,7 +44,7 @@ if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_
         $prod_filename = $product_type . $sku . "." . $fileExtension;
 
         // check if file has one of the following extensions
-        $allowedfileExtensions = array('xlsx', 'xls');
+        $allowedfileExtensions = array('xlsx', 'xls', 'pdf', 'docx', 'doc', 'do','dta');
 
         if (in_array($fileExtension, $allowedfileExtensions)) {
             // directory in which the uploaded file will be moved
