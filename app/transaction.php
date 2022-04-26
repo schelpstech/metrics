@@ -117,7 +117,7 @@ $paid_at = $verify_response['data']['paid_at'];
                     echo 115;
                 }
   }else{
-      echo '"'.'Authorization: Bearer '.$payment_gateway['secret'].'"';
+      echo '116';
   }        
                
 // transaction data

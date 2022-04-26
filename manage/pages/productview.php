@@ -9,6 +9,13 @@ include "../include/nav.php";
                     <div class="card">
                         <div class="card-header">
                             <h4>CrunchEconometrix :: Product Shelf</h4>
+                            <?php
+
+                            if (isset($_SESSION['msg'])) {
+                                printf('<b>%s</b>', $_SESSION['msg']);
+                                unset($_SESSION['msg']);
+                            }
+                            ?>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -50,7 +57,7 @@ include "../include/nav.php";
                                                 echo '<a href="#" class="btn btn-icon icon-left btn-danger"><i class="far fa-exclamation-triangle"></i>Off Shelf</a>';
                                             }
                                              ?></td>
-                                            <td> <a href="<?php echo $view['prod_sku']; ?>" class="btn btn-primary">Manage Product</a></td>
+                                            <td> <a href="./productedit.php?sku=<?php echo $view['prod_sku']; ?>" class="btn btn-primary">Manage Product</a></td>
                                            
                                             
                                         </tr>
