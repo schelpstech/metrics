@@ -5,23 +5,23 @@ if (isset($_GET['sku'])) {
     $sku = $_GET['sku'];
 
     $tblName = 'prod_sku';
-  $conditions = array(
-    'return_type' => 'single',
-    'where' => array(
-      'prod_sku' => $sku,
-    )
+    $conditions = array(
+        'return_type' => 'single',
+        'where' => array(
+            'prod_sku' => $sku,
+        )
 
-  );
-  $product_details = $model->getRows($tblName, $conditions);
+    );
+    $product_details = $model->getRows($tblName, $conditions);
 
-  if (!empty($product_details)) {
-      $prod_name =  $product_details['prod_name'];
-      $prod_desc =  $product_details['prod_desc'];
-      $prod_price =  $product_details['prod_price'];
-      $prod_type =  $product_details['prod_type'];
-      $prod_tag =  $product_details['prod_tag'];
-      $prod_status =  $product_details['prod_status'];
-  }
+    if (!empty($product_details)) {
+        $prod_name =  $product_details['prod_name'];
+        $prod_desc =  $product_details['prod_desc'];
+        $prod_price =  $product_details['prod_price'];
+        $prod_type =  $product_details['prod_type'];
+        $prod_tag =  $product_details['prod_tag'];
+        $prod_status =  $product_details['prod_status'];
+    }
 }
 ?>
 
@@ -43,8 +43,8 @@ if (isset($_GET['sku'])) {
                             ?>
                         </div>
                         <form method="POST" action="../../app/productaction.php" enctype="multipart/form-data">
-                        <div class="card-body">
-                           
+                            <div class="card-body">
+
 
                                 <div class="form-group" style="display: none;">
                                     <label>SKU ID</label>
@@ -65,7 +65,7 @@ if (isset($_GET['sku'])) {
                                                 <i class="fas fa-cart-plus"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" name="product_name" value="<?php echo $prod_name ?>" >
+                                        <input type="text" class="form-control" name="product_name" value="<?php echo $prod_name ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -88,7 +88,7 @@ if (isset($_GET['sku'])) {
                                                 <i class="fas fa-fas fa-donate"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control currency" name="product_price" value="<?php echo $prod_price ?>" >
+                                        <input type="text" class="form-control currency" name="product_price" value="<?php echo $prod_price ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -100,7 +100,7 @@ if (isset($_GET['sku'])) {
                                             </div>
                                         </div>
                                         <select type="text" class="form-control" name="product_type">
-                                            <option value="<?php echo $prod_type ?>" ><?php echo $prod_type ?></option>
+                                            <option value="<?php echo $prod_type ?>"><?php echo $prod_type ?></option>
                                             <option value="">Change Product Type</option>
                                             <option value="DoFile">DoFiles</option>
                                             <option value="Dataset">Datasets</option>
@@ -115,7 +115,7 @@ if (isset($_GET['sku'])) {
                                                 <i class="fas fa-tags"></i>
                                             </div>
                                         </div>
-                                        <input type="text" name="product_tag" class="form-control inputtags" value="<?php echo $prod_tag ?>" >
+                                        <input type="text" name="product_tag" class="form-control inputtags" value="<?php echo $prod_tag ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -127,7 +127,7 @@ if (isset($_GET['sku'])) {
                                             </div>
                                         </div>
                                         <select type="text" class="form-control" name="product_status">
-                                            <option value="<?php echo $prod_status ?>" ><?php echo $prod_status == 1 ? 'Active' : 'Inactive' ?></option>
+                                            <option value="<?php echo $prod_status ?>"><?php echo $prod_status == 1 ? 'Active' : 'Inactive' ?></option>
                                             <option value="">Change Product Status</option>
                                             <option value="1">Activate</option>
                                             <option value="0">De-activate</option>
@@ -137,9 +137,9 @@ if (isset($_GET['sku'])) {
                                 <div class="card-footer text-right">
                                     <input type="submit" name="edit_product" class="btn btn-primary btn-lg" value="Update Product Details" />
                                 </div>
-                            
 
-                        </div>
+
+                            </div>
                         </form>
                     </div>
                 </div>

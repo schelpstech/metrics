@@ -249,10 +249,10 @@ if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_
             </div>
     </div>';
 
-    $user->redirect('../manage/pages/productview.php');
+        $user->redirect('../manage/pages/productview.php');
         $_SESSION['msg'] = $response;
     }
-}else {
+} else {
     $response =
         '<div class="alert alert-warning alert-has-icon">
     <div class="alert-icon"><i class="far fa-lightbulb"></i></div>

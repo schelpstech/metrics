@@ -37,35 +37,35 @@ include "../include/nav.php";
                                         $count = 1;
                                         $tablename = 'prod_sku';
                                         $productview = $model->select_all($tablename);
-                                        if(!empty($productview)){
-                                            foreach($productview as $view){
-                                         
-                                           
+                                        if (!empty($productview)) {
+                                            foreach ($productview as $view) {
+
+
                                         ?>
-                                        
-                                        <tr>
-                                            <td> <?php echo $count++ ?></td>
-                                            <td> <?php echo $view['prod_sku']; ?></td>
-                                            <td> <?php echo $view['prod_name']; ?></td>
-                                            <td> <?php echo $view['prod_type']; ?></td>
-                                            <td> <?php echo $view['prod_price']; ?></td>
-                                            <td> <a href="<?php echo $view['prod_path']; ?>" class="btn btn-icon icon-left btn-info"><i class="far fa-file"></i>Download</a></td>
-                                            <td> <?php 
-                                            if ($view['prod_status'] == 1){
-                                                echo '<a href="#" class="btn btn-icon icon-left btn-success"><i class="far fa-check"></i>On Sale</a>';
-                                            }else{
-                                                echo '<a href="#" class="btn btn-icon icon-left btn-danger"><i class="far fa-exclamation-triangle"></i>Off Shelf</a>';
+
+                                                <tr>
+                                                    <td> <?php echo $count++ ?></td>
+                                                    <td> <?php echo $view['prod_sku']; ?></td>
+                                                    <td> <?php echo $view['prod_name']; ?></td>
+                                                    <td> <?php echo $view['prod_type']; ?></td>
+                                                    <td> <?php echo $view['prod_price']; ?></td>
+                                                    <td> <a href="<?php echo $view['prod_path']; ?>" class="btn btn-icon icon-left btn-info"><i class="far fa-file"></i>Download</a></td>
+                                                    <td> <?php
+                                                            if ($view['prod_status'] == 1) {
+                                                                echo '<a href="#" class="btn btn-icon icon-left btn-success"><i class="far fa-check"></i>On Sale</a>';
+                                                            } else {
+                                                                echo '<a href="#" class="btn btn-icon icon-left btn-danger"><i class="far fa-exclamation-triangle"></i>Off Shelf</a>';
+                                                            }
+                                                            ?></td>
+                                                    <td> <a href="./productedit.php?sku=<?php echo $view['prod_sku']; ?>" class="btn btn-primary">Manage Product</a></td>
+
+
+                                                </tr>
+                                        <?php
                                             }
-                                             ?></td>
-                                            <td> <a href="./productedit.php?sku=<?php echo $view['prod_sku']; ?>" class="btn btn-primary">Manage Product</a></td>
-                                           
-                                            
-                                        </tr>
-                                       <?php 
-                                        }
-                                    }else 'No Product Added'
+                                        } else 'No Product Added'
                                         ?>
-                           
+
                                     </tbody>
                                 </table>
                             </div>
