@@ -175,7 +175,6 @@
         <div class="col-md-4 col-lg-2">
           <div class="widget">
             <h4 class="widget-title  mb-3">Get in Touch</h4>
-            <address>CMSS Building, Covenant University, Idiroko Rd, Ota, Ogun state, Nigeria</address>
             <a href="mailto:info@cruncheconometrix.com.ng" class="link-body">info@cruncheconometrix.com.ng</a><br /> 
           </div>
           <!-- /.widget -->

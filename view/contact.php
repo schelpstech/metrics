@@ -143,16 +143,7 @@ include '../assets/php/navbar.php';
             <!--/column -->
             <div class="col-lg-6">
               <div class="p-10 p-md-11 p-lg-14">
-                <div class="d-flex flex-row">
-                  <div>
-                    <div class="icon text-primary fs-28 me-4 mt-n1"> <i class="uil uil-location-pin-alt"></i> </div>
-                  </div>
-
-                  <div class="align-self-start justify-content-start">
-                    <h5 class="mb-1">Address</h5>
-                    <address>CBSS Building, Covenant University, Idiroko Rd, Ota, Ogun state, Nigeria</address>
-                  </div>
-                </div>
+                
                 <!--/div -->
 
 
@@ -163,7 +154,6 @@ include '../assets/php/navbar.php';
 
                   <div>
                     <h5 class="mb-1">E-mail</h5>
-                    <p class="mb-0"><a href="mailto:cruncheconometrix@gmail.com" class="link-body">cruncheconometrix@gmail.com</a></p>
                     <p class="mb-0"><a href="mailto:info@cruncheconometrix.com.ng" class="link-body">info@cruncheconometrix.com.ng</a></p>
                   </div>
                 </div>

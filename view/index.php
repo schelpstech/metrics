@@ -153,7 +153,7 @@ include '../assets/php/navbar.php';
                   <div class="price price-show"><span class="price-currency">$</span><span class="price-value">200</span> <span class="price-duration">life time access</span></div>
                 </div>
                 <!--/.prices -->
-                <h4 class="card-title mt-2">Hands-on Econometrics for Beginners and Advanced Users</h4>
+                <h4 class="card-title mt-2">Hands-on Econometrics for Beginners and Advanced Users (H.E.B.A)</h4>
                 <ul class="icon-list bullet-bg bullet-soft-primary mt-8 mb-9">
                   <li><i class="uil uil-check"></i><span> 14 hours on-demand video </span></li>
                   <li><i class="uil uil-check"></i><span>90 downloadable resources</span></li>
