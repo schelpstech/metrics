@@ -9,14 +9,15 @@ include "../include/nav.php";
                     <div class="card">
                         <div class="card-header">
                             <h4>CrunchEconometrix :: Product Shelf</h4>
-                            <?php
+                            
+                        </div>
+                        <?php
 
                             if (isset($_SESSION['msg'])) {
                                 printf('<b>%s</b>', $_SESSION['msg']);
                                 unset($_SESSION['msg']);
                             }
                             ?>
-                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
@@ -30,13 +31,14 @@ include "../include/nav.php";
                                             <th>Product Link</th>
                                             <th>Status</th>
                                             <th>Action</th>
+                                            <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $count = 1;
                                         $tablename = 'prod_sku';
-                                        $productview = $model->select_all($tablename);
+                                        $productview = $model->getRows($tablename);
                                         if (!empty($productview)) {
                                             foreach ($productview as $view) {
 
@@ -57,7 +59,8 @@ include "../include/nav.php";
                                                                 echo '<a href="#" class="btn btn-icon icon-left btn-danger"><i class="far fa-exclamation-triangle"></i>Off Shelf</a>';
                                                             }
                                                             ?></td>
-                                                    <td> <a href="./productedit.php?sku=<?php echo $view['prod_sku']; ?>" class="btn btn-primary">Manage Product</a></td>
+                                                    <td> <a href="./productedit.php?skue=<?php echo $view['prod_sku']; ?>" class="btn btn-primary">Manage Product</a></td>
+                                                    <td> <a href="./productedit.php?skud=<?php echo $view['prod_sku']; ?>" class="btn btn-danger">Delete Product</a></td>
 
 
                                                 </tr>

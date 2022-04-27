@@ -74,82 +74,65 @@ if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_
 
                 if ($insert) {
                     $response =
-                        '<div class="alert alert-success alert-has-icon">
-        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
-            <div class="alert-body">
-                <div class="alert-title">Successful</div>
-                <button class="close" data-dismiss="alert">
+                        '<div class="alert alert-warning alert-dismissible show fade">
+                        <div class="alert-body">
+                            <button class="close" data-dismiss="alert">
                             <span>&times;</span>
-                        </button>
-                        Product File with SKU :: ' . $sku . ' for :: ' . $product_name . ' has been successfully uploaded
-            </div>
-    </div>';
-
+                            </button>
+                            Product File with SKU :: ' . $sku . ' for :: ' . $product_name . ' has been successfully uploaded
+                        </div>
+                     </div>';
                     $user->redirect($_SERVER['HTTP_REFERER']);
                     $_SESSION['msg'] = $response;
                 } else {
-
                     $response =
-                        '<div class="alert alert-warning alert-has-icon">
-        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
-            <div class="alert-body">
-                <div class="alert-title">Ooops</div>
-                <button class="close" data-dismiss="alert">
+                        '<div class="alert alert-warning alert-dismissible show fade">
+                        <div class="alert-body">
+                            <button class="close" data-dismiss="alert">
                             <span>&times;</span>
-                        </button>
-                        We are sorry, it seems like there was a glitch in the service. Try again!
-            </div>
-    </div>';
-
+                            </button>
+                            We are sorry, it seems like there was a glitch in the service. Try again!
+                        </div>
+                     </div>';
                     $user->redirect($_SERVER['HTTP_REFERER']);
                     $_SESSION['msg'] = $response;
                 }
             } else {
-
                 $response =
-                    '<div class="alert alert-warning alert-has-icon">
-        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                    '<div class="alert alert-warning alert-dismissible show fade">
             <div class="alert-body">
-                <div class="alert-title">Ooops</div>
                 <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
-                        There was an error uploading the product. Try again!
+                <span>&times;</span>
+                </button>
+                There was an error uploading the product. Try again!
             </div>
-    </div>';
-
+         </div>';
                 $user->redirect($_SERVER['HTTP_REFERER']);
                 $_SESSION['msg'] = $response;
             }
         } else {
             $response =
-                '<div class="alert alert-warning alert-has-icon">
-        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                '<div class="alert alert-warning alert-dismissible show fade">
             <div class="alert-body">
-                <div class="alert-title">Ooops</div>
                 <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
-                        The Product File you are trying to upload is not in the specified format . Try again!
+                <span>&times;</span>
+                </button>
+                The Product File you are trying to upload is not in the specified format . Try again!
             </div>
-    </div>';
-
+         </div>';
             $user->redirect($_SERVER['HTTP_REFERER']);
             $_SESSION['msg'] = $response;
         }
     } else {
         $response =
-            '<div class="alert alert-warning alert-has-icon">
-        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+            '<div class="alert alert-warning alert-dismissible show fade">
             <div class="alert-body">
-                <div class="alert-title">Ooops</div>
                 <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
-                        Please fill all the mandatory fields: ' . trim($valErr) . '
+                <span>&times;</span>
+                </button>
+                Please fill all the mandatory fields: ' . trim($valErr) . '
             </div>
-    </div>';
-
+         </div>';
         $user->redirect($_SERVER['HTTP_REFERER']);
         $_SESSION['msg'] = $response;
     }
@@ -208,63 +191,89 @@ if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_
 
         if ($update) {
             $response =
-                '<div class="alert alert-success alert-has-icon">
-<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
-<div class="alert-body">
-    <div class="alert-title">Successful</div>
-    <button class="close" data-dismiss="alert">
-                <span>&times;</span>
-            </button>
-            Product File with SKU :: ' . $sku . ' for :: ' . $product_name . ' has been successfully modified
-</div>
-</div>';
+                '<div class="alert alert-warning alert-dismissible show fade">
+                <div class="alert-body">
+                    <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                    </button>
+                    Product File with SKU :: ' . $sku . ' for :: ' . $product_name . ' has been successfully modified
+                </div>
+             </div>';
+
             $user->redirect('../manage/pages/productview.php');
             $_SESSION['msg'] = $response;
         } else {
             $response =
-                '<div class="alert alert-warning alert-has-icon">
-<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
-<div class="alert-body">
-    <div class="alert-title">Ooops</div>
-    <button class="close" data-dismiss="alert">
-                <span>&times;</span>
-            </button>
-            We are sorry, it seems like there was a glitch in the service. Try again!
-</div>
-</div>';
+                '<div class="alert alert-warning alert-dismissible show fade">
+                <div class="alert-body">
+                    <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                    </button>
+                    We are sorry, it seems like there was a glitch in the service. Try again!
+                </div>
+             </div>';
 
             $user->redirect('../manage/pages/productview.php');
             $_SESSION['msg'] = $response;
         }
     } else {
         $response =
-            '<div class="alert alert-warning alert-has-icon">
-        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+            '<div class="alert alert-warning alert-dismissible show fade">
             <div class="alert-body">
-                <div class="alert-title">Ooops</div>
                 <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
-                        Please fill all the mandatory fields: ' . trim($valErr) . '
+                <span>&times;</span>
+                </button>
+                Please fill all the mandatory fields: ' . trim($valErr) . '
             </div>
-    </div>';
+         </div>';
 
+        $user->redirect('../manage/pages/productview.php');
+        $_SESSION['msg'] = $response;
+    }
+} elseif (isset($_POST['delete_product']) && $_POST['delete_product'] == 'Delete This Product') {
+
+    $table  = 'prod_sku';
+    $conditons = array(
+        'prod_sku' => trim($_POST['prod_id']),
+    );
+    $delete = $model->delete($table, $conditons);
+
+    if ($delete) {
+        unlink($_SESSION['prod_path']);
+        $response =
+            '<div class="alert alert-success alert-dismissible show fade">
+                <div class="alert-body">
+                    <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                    </button>
+                    Product  :: ' . $_POST['prod_id'] . '::  has been deleted.
+                </div>
+             </div>';
+        $user->redirect('../manage/pages/productview.php');
+        $_SESSION['msg'] = $response;
+    } else {
+        $response =
+            '<div class="alert alert-warning alert-dismissible show fade">
+                <div class="alert-body">
+                    <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                    </button>
+                    We are sorry, it seems like there was a glitch in the service. Try again! ' . $_POST['prod_id'] . ' 
+                </div>
+             </div>';
         $user->redirect('../manage/pages/productview.php');
         $_SESSION['msg'] = $response;
     }
 } else {
     $response =
-        '<div class="alert alert-warning alert-has-icon">
-    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+        '<div class="alert alert-warning alert-dismissible show fade">
         <div class="alert-body">
-            <div class="alert-title">Ooops</div>
             <button class="close" data-dismiss="alert">
-                        <span>&times;</span>
-                    </button>
-                   Undefined Request
+            <span>&times;</span>
+            </button>
+           Undefined request 
         </div>
-</div>';
-
+     </div>';
     $user->redirect('../manage/pages/productview.php');
     $_SESSION['msg'] = $response;
 }

@@ -11,17 +11,17 @@ include "../include/nav.php";
                     <div class="card">
                         <div class="card-header">
                             <h4>CrunchEconometrix :: Add New Publication / Article</h4><br>
-                            <?php
-
-                            if (isset($_SESSION['msg'])) {
-                                printf('<b>%s</b>', $_SESSION['msg']);
-                                unset($_SESSION['msg']);
-                            }
-                            ?>
                         </div>
+                        <?php
+
+                        if (isset($_SESSION['msg'])) {
+                            printf('<b>%s</b>', $_SESSION['msg']);
+                            unset($_SESSION['msg']);
+                        }
+                        ?>
                         <form method="POST" action="../../app/pub_action.php" enctype="multipart/form-data">
-                        <div class="card-body">
-                           
+                            <div class="card-body">
+
 
                                 <div class="form-group" style="display: none;">
                                     <label>Publication ID</label>
@@ -31,7 +31,7 @@ include "../include/nav.php";
                                                 <i class="fas fa-anchor"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" name="c"  value="<?php
+                                        <input type="text" class="form-control" name="pub_id" value="<?php
                                                                                                 require_once('../../app/utility.php');
                                                                                                 $pub_id =  generateRandomText();
                                                                                                 $_SESSION['pub_id'] = $pub_id;
@@ -61,7 +61,7 @@ include "../include/nav.php";
                                         <input type="text" class="form-control" name="author" required="yes">
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label>Publication Year</label>
                                     <div class="input-group">
@@ -73,7 +73,7 @@ include "../include/nav.php";
                                         <input type="text" class="form-control currency" required="yes" name="pub_year" maxlength="4" minlength="4">
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label>Select Publication File</label>
                                     <div class="input-group">
@@ -88,9 +88,9 @@ include "../include/nav.php";
                                 <div class="card-footer text-right">
                                     <input type="submit" name="add_publication" class="btn btn-primary btn-lg" value="Publish" />
                                 </div>
-                            
 
-                        </div>
+
+                            </div>
                         </form>
                     </div>
                 </div>

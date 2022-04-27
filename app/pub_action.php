@@ -39,7 +39,7 @@ if (isset($_POST['add_publication']) && $_FILES['pub_file']['error'] === UPLOAD_
         if (in_array($fileExtension, $allowedfileExtensions)) {
             // directory in which the uploaded file will be moved
             
-            $uploadFileDir = '../resources/publications/';
+            $uploadFileDir = '../manage/resources/publications/';
               
             $dest_path = $uploadFileDir . $prod_filename;
 
@@ -59,82 +59,67 @@ if (isset($_POST['add_publication']) && $_FILES['pub_file']['error'] === UPLOAD_
 
                 if ($insert) {
                     $response =
-                        '<div class="alert alert-success alert-has-icon">
-        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
-            <div class="alert-body">
-                <div class="alert-title">Successful</div>
-                <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
-                        Article  :: ' . $pub_id . ' :: ' . $pub_name . ' has been successfully published.
-            </div>
-    </div>';
+                        '<div class="alert alert-success alert-dismissible show fade">
+                            <div class="alert-body">
+                                <button class="close" data-dismiss="alert">
+                                <span>&times;</span>
+                                </button>
+                                Article  :: ' . $pub_id . ' :: ' . $pub_name . ' has been successfully published.
+                            </div>
+                         </div>';
 
                     $user->redirect($_SERVER['HTTP_REFERER']);
                     $_SESSION['msg'] = $response;
                 } else {
-
                     $response =
-                        '<div class="alert alert-warning alert-has-icon">
-        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
-            <div class="alert-body">
-                <div class="alert-title">Ooops</div>
-                <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
-                        We are sorry, it seems like there was a glitch in the service. Try again!
-            </div>
-    </div>';
-
+                        '<div class="alert alert-warning alert-dismissible show fade">
+                            <div class="alert-body">
+                                <button class="close" data-dismiss="alert">
+                                <span>&times;</span>
+                                </button>
+                                We are sorry, it seems like there was a glitch in the service. Try again!
+                            </div>
+                         </div>';
                     $user->redirect($_SERVER['HTTP_REFERER']);
                     $_SESSION['msg'] = $response;
                 }
             } else {
-
                 $response =
-                    '<div class="alert alert-warning alert-has-icon">
-        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
-            <div class="alert-body">
-                <div class="alert-title">Ooops</div>
-                <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
-                        There was an error uploading the article. Try again!
-            </div>
-    </div>';
+                        '<div class="alert alert-warning alert-dismissible show fade">
+                            <div class="alert-body">
+                                <button class="close" data-dismiss="alert">
+                                <span>&times;</span>
+                                </button>
+                                There was an error uploading the article. Try again!
+                            </div>
+                         </div>';
 
                 $user->redirect($_SERVER['HTTP_REFERER']);
                 $_SESSION['msg'] = $response;
             }
         } else {
             $response =
-                '<div class="alert alert-warning alert-has-icon">
-        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
-            <div class="alert-body">
-                <div class="alert-title">Ooops</div>
-                <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
-                        The Article you are trying to upload is not in the specified format . Try again!
-            </div>
-    </div>';
-
+            '<div class="alert alert-warning alert-dismissible show fade">
+                <div class="alert-body">
+                    <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                    </button>
+                    The Article you are trying to upload is not in the specified format . Try again!
+                </div>
+             </div>';
             $user->redirect($_SERVER['HTTP_REFERER']);
             $_SESSION['msg'] = $response;
         }
     } else {
         $response =
-            '<div class="alert alert-warning alert-has-icon">
-        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+        '<div class="alert alert-warning alert-dismissible show fade">
             <div class="alert-body">
-                <div class="alert-title">Ooops</div>
                 <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
-                        Please fill all the mandatory fields: ' . trim($valErr) . '
+                <span>&times;</span>
+                </button>
+                Please fill all the mandatory fields: ' . trim($valErr) . '
             </div>
-    </div>';
-
+         </div>';
         $user->redirect($_SERVER['HTTP_REFERER']);
         $_SESSION['msg'] = $response;
     }
@@ -178,63 +163,88 @@ if (isset($_POST['add_publication']) && $_FILES['pub_file']['error'] === UPLOAD_
 
         if ($update) {
             $response =
-                '<div class="alert alert-success alert-has-icon">
-<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
-<div class="alert-body">
-    <div class="alert-title">Successful</div>
-    <button class="close" data-dismiss="alert">
-                <span>&times;</span>
-            </button>
-            Article  :: ' . $pub_id . ':: ' . $pub_name . ' has been successfully modified
-</div>
-</div>';
+            '<div class="alert alert-success alert-dismissible show fade">
+                <div class="alert-body">
+                    <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                    </button>
+                    Article  :: ' . $pub_id . ':: ' . $pub_name . ' has been successfully modified
+                </div>
+             </div>';
             $user->redirect('../manage/pages/publicationview.php');
             $_SESSION['msg'] = $response;
         } else {
             $response =
-                '<div class="alert alert-warning alert-has-icon">
-<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
-<div class="alert-body">
-    <div class="alert-title">Ooops</div>
-    <button class="close" data-dismiss="alert">
-                <span>&times;</span>
-            </button>
-            We are sorry, it seems like there was a glitch in the service. Try again!
-</div>
-</div>';
-
+            '<div class="alert alert-warning alert-dismissible show fade">
+                <div class="alert-body">
+                    <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                    </button>
+                    We are sorry, it seems like there was a glitch in the service. Try again!
+                </div>
+             </div>';
             $user->redirect('../manage/pages/publicationview.php');
             $_SESSION['msg'] = $response;
         }
     } else {
         $response =
-            '<div class="alert alert-warning alert-has-icon">
-        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+        '<div class="alert alert-warning alert-dismissible show fade">
             <div class="alert-body">
-                <div class="alert-title">Ooops</div>
                 <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
-                        Please fill all the mandatory fields: ' . trim($valErr) . '
+                <span>&times;</span>
+                </button>
+                Please fill all the mandatory fields: ' . trim($valErr) . '
             </div>
-    </div>';
-
+         </div>';
         $user->redirect('../manage/pages/publicationview.php');
         $_SESSION['msg'] = $response;
     }
-} else {
-    $response =
-        '<div class="alert alert-warning alert-has-icon">
-    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
-        <div class="alert-body">
-            <div class="alert-title">Ooops</div>
-            <button class="close" data-dismiss="alert">
-                        <span>&times;</span>
-                    </button>
-                   Undefined Request
-        </div>
-</div>';
+}elseif (isset($_POST['delete_article']) && $_POST['delete_article'] == 'Delete This Article') {
 
+    $table  = 'publication_tbl';
+        $conditons = array(
+            'pub_key' => trim($_POST['pub_id']),
+        );
+    $delete = $model->delete($table, $conditons);
+        
+        if ($delete) {
+            unlink($_SESSION['pub_file']);
+            $response =
+            '<div class="alert alert-success alert-dismissible show fade">
+                <div class="alert-body">
+                    <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                    </button>
+                    Article  :: ' .  $_POST['pub_id']. '::  has been deleted.
+                </div>
+             </div>';
+            $user->redirect('../manage/pages/publicationview.php');
+            $_SESSION['msg'] = $response;
+        } else {
+            $response =
+            '<div class="alert alert-warning alert-dismissible show fade">
+                <div class="alert-body">
+                    <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                    </button>
+                    We are sorry, it seems like there was a glitch in the service. Try again! '. $_POST['pub_id'].' 
+                </div>
+             </div>';
+            $user->redirect('../manage/pages/publicationview.php');
+            $_SESSION['msg'] = $response;
+        }
+
+}else {
+    $response =
+    '<div class="alert alert-warning alert-dismissible show fade">
+        <div class="alert-body">
+            <button class="close" data-dismiss="alert">
+            <span>&times;</span>
+            </button>
+            Undefined Request
+        </div>
+     </div>';
+    
     $user->redirect('../manage/pages/publicationview.php');
     $_SESSION['msg'] = $response;
 }
