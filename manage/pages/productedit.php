@@ -65,7 +65,7 @@ if (isset($_GET['sku'])) {
                                                 <i class="fas fa-cart-plus"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" name="product_name" value="<?php echo $prod_name ?>">
+                                        <input type="text" class="form-control" name="product_name"  required="yes" value="<?php echo $prod_name ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -76,7 +76,7 @@ if (isset($_GET['sku'])) {
                                                 <i class="fas fa-info-circle"></i>
                                             </div>
                                         </div>
-                                        <textarea type="text" class="form-control" name="product_desc"><?php echo $prod_desc ?></textarea>
+                                        <textarea type="text" class="form-control"  required="yes" name="product_desc"><?php echo $prod_desc ?></textarea>
                                     </div>
 
                                 </div>
@@ -88,7 +88,7 @@ if (isset($_GET['sku'])) {
                                                 <i class="fas fa-fas fa-donate"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control currency" name="product_price" value="<?php echo $prod_price ?>">
+                                        <input type="text" class="form-control currency"  required="yes" name="product_price" value="<?php echo $prod_price ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -99,7 +99,7 @@ if (isset($_GET['sku'])) {
                                                 <i class="fas fa-retweet"></i>
                                             </div>
                                         </div>
-                                        <select type="text" class="form-control" name="product_type">
+                                        <select type="text" class="form-control"  required="yes" name="product_type">
                                             <option value="<?php echo $prod_type ?>"><?php echo $prod_type ?></option>
                                             <option value="">Change Product Type</option>
                                             <option value="DoFile">DoFiles</option>
@@ -115,7 +115,7 @@ if (isset($_GET['sku'])) {
                                                 <i class="fas fa-tags"></i>
                                             </div>
                                         </div>
-                                        <input type="text" name="product_tag" class="form-control inputtags" value="<?php echo $prod_tag ?>">
+                                        <input type="text" name="product_tag"  required="yes" class="form-control inputtags" value="<?php echo $prod_tag ?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -126,7 +126,7 @@ if (isset($_GET['sku'])) {
                                                 <i class="fas fa-retweet"></i>
                                             </div>
                                         </div>
-                                        <select type="text" class="form-control" name="product_status">
+                                        <select type="text" class="form-control"  required="yes" name="product_status">
                                             <option value="<?php echo $prod_status ?>"><?php echo $prod_status == 1 ? 'Active' : 'Inactive' ?></option>
                                             <option value="">Change Product Status</option>
                                             <option value="1">Activate</option>

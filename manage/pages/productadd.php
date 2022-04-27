@@ -46,7 +46,7 @@ include "../include/nav.php";
                                                 <i class="fas fa-cart-plus"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control" name="product_name">
+                                        <input type="text" class="form-control"  required="yes" name="product_name">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -57,7 +57,7 @@ include "../include/nav.php";
                                                 <i class="fas fa-info-circle"></i>
                                             </div>
                                         </div>
-                                        <textarea type="text" class="form-control" name="product_desc"></textarea>
+                                        <textarea type="text" class="form-control"  required="yes" name="product_desc"></textarea>
                                     </div>
 
                                 </div>
@@ -69,7 +69,7 @@ include "../include/nav.php";
                                                 <i class="fas fa-fas fa-donate"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control currency" name="product_price">
+                                        <input type="text" class="form-control currency"  required="yes" name="product_price">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -80,7 +80,7 @@ include "../include/nav.php";
                                                 <i class="fas fa-retweet"></i>
                                             </div>
                                         </div>
-                                        <select type="text" class="form-control" name="product_type">
+                                        <select type="text" class="form-control" name="product_type"  required="yes">
                                             <option value="">Select Product Type</option>
                                             <option value="DoFile">DoFiles</option>
                                             <option value="Dataset">Datasets</option>
@@ -95,7 +95,7 @@ include "../include/nav.php";
                                                 <i class="fas fa-tags"></i>
                                             </div>
                                         </div>
-                                        <input type="text" name="product_tag" class="form-control inputtags">
+                                        <input type="text" name="product_tag"  required="yes" class="form-control inputtags">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -106,7 +106,7 @@ include "../include/nav.php";
                                                 <i class="fas fa-file-medical"></i>
                                             </div>
                                         </div>
-                                        <input type="file" class="form-control" name="product_file">
+                                        <input type="file" class="form-control"  required="yes" name="product_file">
                                     </div>
                                 </div>
                                 <div class="card-footer text-right">

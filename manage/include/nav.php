@@ -90,12 +90,12 @@ include "lookup.php";
               <a href="welcome.php" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
             </li>
             <li class="dropdown">
-              <a href="profile.php" class="nav-link"><i data-feather="user-check"></i><span>Admin Profile</span></a>
+              <a href="#" class="nav-link"><i data-feather="feather"></i><span>Admin Profile</span></a>
             </li>
             
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="briefcase"></i><span>Manage Users</span></a>
+                  data-feather="user-check"></i><span>Manage Users</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="userboard.php">Dashboard</a></li>
                 <li><a class="nav-link" href="userview.php">Users Log</a></li>
@@ -104,16 +104,23 @@ include "lookup.php";
             </li>
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="briefcase"></i><span>Manage Products</span></a>
+                  data-feather="shopping-bag"></i><span>Manage Products</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="productadd.php">Add Product </a></li>
                 <li><a class="nav-link" href="productview.php">Product Shelf</a></li>
-                <li><a class="nav-link" href="withdraw.php">Withrawal</a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="briefcase"></i><span>Manage Sales</span></a>
+                  data-feather="layout"></i><span>Publications</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="publicationadd.php">Add Publication </a></li>
+                <li><a class="nav-link" href="publicationview.php">My Publications</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i
+                  data-feather="grid"></i><span>Manage Sales</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="pricing.php">Transaction Log</a></li>
                 <li><a class="nav-link" href="report.php">Sales Coupon</a></li>

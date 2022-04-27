@@ -1,37 +1,29 @@
 <?php
 require_once('../controller/start.inc.php');
 
-if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_ERR_OK && $_POST['add_product'] == 'Submit') {
+if (isset($_POST['add_publication']) && $_FILES['pub_file']['error'] === UPLOAD_ERR_OK && $_POST['add_publication'] == 'Publish') {
     // Retrieve form input
-    $product_name = trim($_POST['product_name']);
-    $product_desc = htmlspecialchars($_POST["product_desc"]);
-    $product_price = trim($_POST['product_price']);
-    $product_type = trim($_POST['product_type']);
-    $product_tag = htmlspecialchars($_POST["product_tag"]);
-    $sku = $_SESSION['sku'];
+    $pub_id = trim($_POST['pub_id']);
+    $pub_name = trim($_POST['pub_name']);
+    $author = trim($_POST['author']);
+    $pub_year = trim($_POST['pub_year']);
 
     // get details of the uploaded file
-    $fileTmpPath = $_FILES['product_file']['tmp_name'];
-    $fileName = $_FILES['product_file']['name'];
-    $fileSize = $_FILES['product_file']['size'];
-    $fileType = $_FILES['product_file']['type'];
+    $fileTmpPath = $_FILES['pub_file']['tmp_name'];
+    $fileName = $_FILES['pub_file']['name'];
+    $fileSize = $_FILES['pub_file']['size'];
+    $fileType = $_FILES['pub_file']['type'];
     $fileNameCmps = explode(".", $fileName);
     $fileExtension = strtolower(end($fileNameCmps));
-
-    $product_price = !empty($product_price) ? $product_price : 0;
     // Validate form fields 
-    if (empty($product_name)) {
-        $valErr .= 'Please enter Product Name.<br/>';
+    if (empty($pub_name)) {
+        $valErr .= 'Please enter Publication Name.<br/>';
     }
-    if (empty($product_desc)) {
-        $valErr .= 'Please enter Product Description.<br/>';
+    if (empty($author)) {
+        $valErr .= 'Please enter author names.<br/>';
     }
-
-    if (empty($product_type)) {
-        $valErr .= 'Please Select Product Type.<br/>';
-    }
-    if (empty($product_tag)) {
-        $valErr .= 'Please enter one or more Product Tag.<br/>';
+    if (empty($pub_year)) {
+        $valErr .= 'Please enter Publication Year.<br/>';
     }
 
 
@@ -39,36 +31,29 @@ if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_
     if (empty($valErr)) {
 
         // sanitize file-name
-        $prod_filename = $product_type . $sku . "." . $fileExtension;
+        $prod_filename = $pub_id . "." . $fileExtension;
 
         // check if file has one of the following extensions
-        $allowedfileExtensions = array('xlsx', 'xls', 'pdf', 'docx', 'doc', 'do', 'dta');
+        $allowedfileExtensions = array('pdf', 'docx', 'doc');
 
         if (in_array($fileExtension, $allowedfileExtensions)) {
             // directory in which the uploaded file will be moved
-            if ($product_type == 'Dataset') {
-                $uploadFileDir = '../manage/resources/datasets/';
-                $prod_image = '../assets/img/web/file.png';
-            } elseif ($product_type == 'DoFile') {
-                $uploadFileDir = '../manage/resources/dofiles/';
-                $prod_image = '../assets/img/web/dofile.png';
-            }
+            
+            $uploadFileDir = '../resources/publications/';
+              
             $dest_path = $uploadFileDir . $prod_filename;
 
             if (move_uploaded_file($fileTmpPath, $dest_path)) {
 
                 // Insert data into the database
-                $tblName  = 'prod_sku';
+                $tblName  = 'publication_tbl';
                 $userData = array(
-                    'prod_sku' => $sku,
-                    'prod_name' => $product_name,
-                    'prod_desc' => $product_desc,
-                    'prod_price' => $product_price,
-                    'prod_type' => $product_type,
-                    'prod_tag' => $product_tag,
-                    'prod_path' => $dest_path,
-                    'prod_img' => $prod_image,
-                    'prod_status' => 1,
+                    'pub_key' => $pub_id,
+                    'pub_name' => $pub_name,
+                    'author' => $author,
+                    'pub_year' => $pub_year,
+                    'pub_file' => $dest_path,
+                    'pub_status' => 1,
                 );
                 $insert = $model->insert_data($tblName, $userData);
 
@@ -81,7 +66,7 @@ if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_
                 <button class="close" data-dismiss="alert">
                             <span>&times;</span>
                         </button>
-                        Product File with SKU :: ' . $sku . ' for :: ' . $product_name . ' has been successfully uploaded
+                        Article  :: ' . $pub_id . ' :: ' . $pub_name . ' has been successfully published.
             </div>
     </div>';
 
@@ -114,7 +99,7 @@ if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_
                 <button class="close" data-dismiss="alert">
                             <span>&times;</span>
                         </button>
-                        There was an error uploading the product. Try again!
+                        There was an error uploading the article. Try again!
             </div>
     </div>';
 
@@ -130,7 +115,7 @@ if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_
                 <button class="close" data-dismiss="alert">
                             <span>&times;</span>
                         </button>
-                        The Product File you are trying to upload is not in the specified format . Try again!
+                        The Article you are trying to upload is not in the specified format . Try again!
             </div>
     </div>';
 
@@ -153,58 +138,43 @@ if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_
         $user->redirect($_SERVER['HTTP_REFERER']);
         $_SESSION['msg'] = $response;
     }
-} elseif (isset($_POST['edit_product']) && $_POST['edit_product'] == 'Update Product Details') {
+} elseif (isset($_POST['edit_article']) && $_POST['edit_article'] == 'Update Article Details') {
 
-    $product_name = trim($_POST['product_name']);
-    $product_desc = htmlspecialchars($_POST["product_desc"]);
-    $product_price = trim($_POST['product_price']);
-    $product_type = trim($_POST['product_type']);
-    $product_tag = htmlspecialchars($_POST["product_tag"]);
-    $product_status = htmlspecialchars($_POST["product_status"]);
-    $sku = trim($_POST['product_sku']);
-
-    $product_price = !empty($product_price) ? $product_price : 0;
+    $pub_id = trim($_POST['pub_id']);
+    $pub_name = trim($_POST['pub_name']);
+    $author = trim($_POST['author']);
+    $pub_year = trim($_POST['pub_year']);
+    $pub_status = trim($_POST['pub_status']);
 
     // Validate form fields 
-    if (empty($product_name)) {
-        $valErr .= 'Please enter Product Name.<br/>';
+    if (empty($pub_name)) {
+        $valErr .= 'Please enter Publication Name.<br/>';
     }
-    if (empty($product_desc)) {
-        $valErr .= 'Please enter Product Description.<br/>';
+    if (empty($author)) {
+        $valErr .= 'Please enter author names.<br/>';
     }
-
-    if (empty($product_type)) {
-        $valErr .= 'Please Select Product Type.<br/>';
-    }
-    if (empty($product_tag)) {
-        $valErr .= 'Please enter one or more Product Tag.<br/>';
+    if (empty($pub_year)) {
+        $valErr .= 'Please enter Publication Year.<br/>';
     }
 
+
+    // Check whether user inputs are empty 
     if (empty($valErr)) {
 
-        if ($product_type == 'Dataset') {
-            $uploadFileDir = '../resources/datasets/';
-            $prod_image = '../assets/img/web/file.png';
-        } elseif ($product_type == 'DoFile') {
-            $uploadFileDir = '../resources/dofiles/';
-            $prod_image = '../assets/img/web/dofile.png';
-        }
 
-        $tblName  = 'prod_sku';
-        $prodData = array(
-            'prod_name' => $product_name,
-            'prod_desc' => $product_desc,
-            'prod_price' => $product_price,
-            'prod_type' => $product_type,
-            'prod_tag' => $product_tag,
-            'prod_img' => $prod_image,
-            'prod_status' => $product_status,
+        $tblName  = 'publication_tbl';
+        $articleData = array(
+            
+            'pub_name' => $pub_name,
+            'author' => $author,
+            'pub_year' => $pub_year,
+            'pub_status' => $pub_status,
         );
 
         $conditons = array(
-            'prod_sku' => $sku,
+            'pub_key' => $pub_id,
         );
-        $update = $model->upDate($tblName, $prodData, $conditons);
+        $update = $model->upDate($tblName, $articleData, $conditons);
 
         if ($update) {
             $response =
@@ -215,10 +185,10 @@ if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_
     <button class="close" data-dismiss="alert">
                 <span>&times;</span>
             </button>
-            Product File with SKU :: ' . $sku . ' for :: ' . $product_name . ' has been successfully modified
+            Article  :: ' . $pub_id . ':: ' . $pub_name . ' has been successfully modified
 </div>
 </div>';
-            $user->redirect('../manage/pages/productview.php');
+            $user->redirect('../manage/pages/publicationview.php');
             $_SESSION['msg'] = $response;
         } else {
             $response =
@@ -233,7 +203,7 @@ if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_
 </div>
 </div>';
 
-            $user->redirect('../manage/pages/productview.php');
+            $user->redirect('../manage/pages/publicationview.php');
             $_SESSION['msg'] = $response;
         }
     } else {
@@ -249,7 +219,7 @@ if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_
             </div>
     </div>';
 
-        $user->redirect('../manage/pages/productview.php');
+        $user->redirect('../manage/pages/publicationview.php');
         $_SESSION['msg'] = $response;
     }
 } else {
@@ -265,6 +235,6 @@ if (isset($_POST['add_product']) && $_FILES['product_file']['error'] === UPLOAD_
         </div>
 </div>';
 
-    $user->redirect('../manage/pages/productview.php');
+    $user->redirect('../manage/pages/publicationview.php');
     $_SESSION['msg'] = $response;
 }
