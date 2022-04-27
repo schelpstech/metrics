@@ -1,6 +1,6 @@
 <section class="wrapper bg-light">
   <div class="container-card pt-14 pt-md-16">
-    <div class="card image-wrapper bg-full bg-image bg-overlay bg-overlay-light-500 pb-15" data-image-src="../assets/img/photos/bg22.png">
+    <div class="card image-wrapper bg-full bg-image bg-overlay bg-overlay-light-500 pb-15" data-image-src="../assets/img/web/bg22.png">
       <div class="card-body py-14 px-0">
         <div class="container">
           <div class="row gx-lg-8 gx-xl-12 gy-10 gy-lg-0">
@@ -140,7 +140,7 @@
           <div class="widget">
             <h3 class="h2 mb-3 ">Join the Community</h3>
             <p class="lead mb-5">Let's make learning Econometrics comprehensible and applicable for beginners, researchers and advanced professionals.</p>
-            <a href="#" class="btn  btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-signin">Join Us</a>
+            <a href="#" class="btn  btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-signup">Join Us</a>
           </div>
           <!-- /.widget -->
         </div>

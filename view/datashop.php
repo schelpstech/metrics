@@ -103,7 +103,7 @@ if (isset($_SESSION['uniqueid'])) {
                                     </div>
                                     <span class="post-category text-ash mb-0"><?php echo $view['prod_type'] ?></span>
                                 </div>
-                                <h2 class="post-title h3 fs-22"><a href="./shop-product.html" class="link-dark"> <?php echo $view['prod_name']; ?></a></h2>
+                                <h2 class="post-title h3 fs-22"><a href="#" class="link-dark"> <?php echo $view['prod_name']; ?></a></h2>
                                
                                 <p class="price"><?php echo $view['prod_desc']; ?> </p>
                             </div>

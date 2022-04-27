@@ -161,7 +161,7 @@ include '../assets/php/navbar.php';
                   <li><i class="uil uil-check"></i><span>Access on mobile and TV</span></li>
                   <li><i class="uil uil-check"></i><span>Certificate of completion</span></li>
                 </ul>
-                <a href="#" class="btn btn-primary rounded-pill">Buy on CrunchEconometrix </a>
+                <a href="#" disabled class="btn btn-primary rounded-pill">Buy on CrunchEconometrix </a>
               </div>
               <!--/.card-body -->
             </div>
