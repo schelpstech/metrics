@@ -1,5 +1,6 @@
 <?php
 require_once('../controller/start.inc.php');
+include('../app/visitorlog.php');
 if (isset($_SESSION['uniqueid']) && isset($_SESSION['token'])) {
   $access_account =
 
