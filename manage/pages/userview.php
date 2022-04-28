@@ -40,9 +40,9 @@ include "../include/nav.php";
                                         
                                         <tr>
                                             <td> <?php echo $count++ ?></td>
-                                            <td> <?php echo $view['user_firstname']; ?></td>
-                                            <td> <?php echo $view['user_surname']; ?></td>
-                                            <td> <?php echo $view['useremail']; ?></td>
+                                            <td> <?php echo ucwords($view['user_firstname']); ?></td>
+                                            <td> <?php echo ucwords($view['user_surname']); ?></td>
+                                            <td> <?php echo strtolower($view['useremail']); ?></td>
                                             <td> <?php 
                                             if (!empty($nextview['login_date'])){
                                                 echo $nextview['login_date'];
