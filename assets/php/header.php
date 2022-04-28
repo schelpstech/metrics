@@ -36,7 +36,7 @@ if (isset($_SESSION['uniqueid']) && isset($_SESSION['token'])) {
   <link rel="stylesheet" href="../assets/css/colors/aqua.css">
   <link rel="preload" href="../assets/css/fonts/dm.css" as="style" onload="this.rel='stylesheet'">
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9864962786758377\" crossorigin=\"anonymous\"> 
+  <script async src=\'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9864962786758377\' crossorigin=\'anonymous\'> 
 </script>
 </head>
 
