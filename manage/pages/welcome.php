@@ -49,7 +49,7 @@ include "../include/nav.php";
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                         <div class="card-content">
                           <h5 class="font-15">  Website Visitors</h5>
-                          <h2 class="mb-3 font-18">0</h2>
+                          <h2 class="mb-3 font-18"><?php echo  $count_visitors ?> visitors</h2>
                         
                         </div>
                       </div>
@@ -124,9 +124,9 @@ include "../include/nav.php";
                           <div class="list-inline text-center">
                             <div class="list-inline-item p-r-30"><i data-feather="arrow-up-circle"
                                 class="col-green"></i>
-                              <h5 class="m-b-0">109.59 users</h5>
-                              <h5 class="m-b-0">0.11%</h5>
-                              <p class="text-muted font-14 m-b-0">Website Visitors</p>
+                              <h5 class="m-b-0"><?php echo  $count_visitors_today ?></h5>
+                              <h5 class="m-b-0"><?php echo round((( $count_visitors_today / $count_visitors) * 100),2) ?>%</h5>
+                              <p class="text-muted font-14 m-b-0"><small>Website Visitors Today</small> </p>
                             </div>
                           </div>
                         </div>

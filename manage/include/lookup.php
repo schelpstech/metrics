@@ -71,6 +71,25 @@ $conditions = array(
     )
   );
   $paying_users = $model->getRows($tblName, $conditions);
+
+
+// count visitors
+$tbl = 'visit_log';
+$conditions = array(
+  'return_type' => 'count',
+);
+$count_visitors = $model->getRows($tbl, $conditions);
+
+// count visitors today
+
+$conditions = array(
+  'where' => array(
+    'date' => $date,
+  ),
+  'return_type' => 'count',
+);
+$count_visitors_today = $model->getRows($tbl, $conditions);
+
 //Successful Logins
 $tblName = 'user_log';
 $conditions = array(
@@ -104,4 +123,3 @@ $conditions = array(
     'limit'=> '5',
   );
   $login_view = $model->getRows($tblName, $conditions);
-?>
