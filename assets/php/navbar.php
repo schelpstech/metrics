@@ -26,6 +26,7 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Resources</a>
                   <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="dropdown-item" href="./publication.php">Publications</a></li>
                   <li class="nav-item"><a class="dropdown-item" href="https://www.youtube.com/c/CrunchEconometrix">YouTube Videos</a></li>
                     <li class="nav-item"><a class="dropdown-item" href="https://cruncheconometrix.teachable.com/">Teachable Videos</a></li>
                     <li class="nav-item"><a class="dropdown-item" href="https://www.researchgate.net/profile/Ngozi-Adeleye">ResearchGate</a></li>

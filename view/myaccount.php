@@ -61,7 +61,7 @@ if (isset($_SESSION['msg'])) {
                         <p> <strong> Date Purchased : </strong>'.$date.'</p>
                         <a class="btn btn-primary btn-icon btn-icon-start rounded">
                               <i class="uil uil-money-withdraw"></i> Download Resources
-                            </a>  
+                        </a>  
                       </div>
                       <!--/.card-body -->
                     </div>

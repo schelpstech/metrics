@@ -57,7 +57,13 @@ if (isset($_SESSION['uniqueid'])) {
                 <?php
                 $count = 1;
                 $tablename = 'prod_sku';
-                $productview = $model->select_all($tablename);
+                $productview = $model->getRows($tablename);
+                $conditions = array(
+                    'where' => array(
+                        'prod_status' => 1,
+                    )
+
+                );
                 if (!empty($productview)) {
                     foreach ($productview as $view) {
 

@@ -121,7 +121,7 @@ YouTube subscribers and 3,500+ Facebook followers</span></li>
                     </div>
                     <!--/column -->
                   </div>
-                  <a href="https://cruncheconometrix.com.ng/wp-content/uploads/2019/08/ADELEYE-Ngozi_CV-Lecturing-Research.pdf" class="btn btn-primary rounded-pill">Download</a>
+                  <a href="../assets/img/web/NgADELEYE_PhD Economics -Crunch.pdf" class="btn btn-primary rounded-pill">Download</a>
                 </div>
                 <!-- /.card-body -->
               </div>
