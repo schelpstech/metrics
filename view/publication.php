@@ -65,6 +65,7 @@ include '../assets/php/navbar.php';
                                                     <i class="uil uil-arrow-down"></i>
                                                     <span>Download</span>
                                                 </a>
+                                                <input type="text"  hidden value="https://cruncheconometrix.com.ng/view/download.php?pubid=<?php echo  $view['pub_key']?>" id="linkput<?php echo  $view['pub_key']?>">
                                                 <a class="btn btn-primary btn-icon btn-icon-start rounded" onclick="copylink<?php echo  $view['pub_key']?>()">
                                                     <i class="uil uil-copy"></i> Copy Link
                                                 </a>
@@ -73,9 +74,11 @@ include '../assets/php/navbar.php';
                                     </div>
                                     <script>
                                         function copylink<?php echo  $view['pub_key']?>() {
-                                        var copyText = "https://cruncheconometrix.com.ng/view/download.php?pubid=<?php echo  $view['pub_key']?>";
-                                        navigator.clipboard.writeText(copyText);
-                                        alert("Link Copied : " + copyText);
+                                        var copyText = document.getElementById("linkput<?php echo  $view['pub_key']?>");
+                                        copyText.select();
+                                        copyText.setSelectionRange(0, 99999);
+                                        navigator.clipboard.writeText(copyText.value);
+                                        alert("Link Copied : " + copyText.value);
                                         }
                                     </script>
                             <?php
