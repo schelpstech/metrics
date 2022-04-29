@@ -65,9 +65,19 @@ include '../assets/php/navbar.php';
                                                     <i class="uil uil-arrow-down"></i>
                                                     <span>Download</span>
                                                 </a>
+                                                <a class="btn btn-primary btn-icon btn-icon-start rounded" onclick="copylink<?php echo  $view['pub_key']?>()">
+                                                    <i class="uil uil-copy"></i> Copy Link
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
+                                    <script>
+                                        function copylink<?php echo  $view['pub_key']?>() {
+                                        var copyText = "https://cruncheconometrics.com.ng/view/download.php?pubid=<?php echo  $view['pub_key']?>";
+                                        navigator.clipboard.writeText(copyText);
+                                        alert("Link Copied : " + copyText);
+                                        }
+                                    </script>
                             <?php
                                 }
                             } else {
