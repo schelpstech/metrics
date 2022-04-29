@@ -61,7 +61,7 @@ include '../assets/php/navbar.php';
                                                 </span>
                                                 <h6 class="mb-0 text-body"><?php echo  $view['pub_name'] ?></h6>
 
-                                                <a href="<?php echo  $view['pub_file'] ?>" class="btn btn-expand btn-primary rounded-pill" style="align-items: right;">
+                                                <a href="./download.php?pubid=<?php echo  $view['pub_key']?>" class="btn btn-expand btn-primary rounded-pill" style="align-items: right;">
                                                     <i class="uil uil-arrow-down"></i>
                                                     <span>Download</span>
                                                 </a>
