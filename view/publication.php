@@ -73,7 +73,7 @@ include '../assets/php/navbar.php';
                                     </div>
                                     <script>
                                         function copylink<?php echo  $view['pub_key']?>() {
-                                        var copyText = "https://cruncheconometrics.com.ng/view/download.php?pubid=<?php echo  $view['pub_key']?>";
+                                        var copyText = "https://cruncheconometrix.com.ng/view/download.php?pubid=<?php echo  $view['pub_key']?>";
                                         navigator.clipboard.writeText(copyText);
                                         alert("Link Copied : " + copyText);
                                         }
