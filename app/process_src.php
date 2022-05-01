@@ -70,7 +70,7 @@ if (isset($_SESSION['msg'])) {
                             var link = document.createElement("a");
                             var file_ref = encodeURIComponent(off);
                             var count = file_ref.length;
-                            var extension = file_ref.substring((count - 6), count+ );
+                            var extension = file_ref.substring((count - 6), count);
                             var name =  "'.str_replace( array( '\'', '"',',' , ';', '<', '>' ), ' ', $product_details['prod_name']).'"+extension;
                             link.setAttribute("download", name);
                             link.href = file_ref;
