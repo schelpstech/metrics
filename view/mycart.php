@@ -18,7 +18,7 @@ if (isset($_SESSION['uniqueid']) && isset($_SESSION['cart_token']) && isset($_SE
   $cart_user = $_SESSION['cart_user'];
   $action = '<a href="#" class="btn btn-primary rounded w-100 mt-4" data-bs-toggle="modal" data-bs-target="#modal-signin"><small>Sign In / Register</small></a>';
 } else {
-  $user->redirect('../view/index.php');
+  $action = 'No Item in Cart';
 }
 
  //Get public key
