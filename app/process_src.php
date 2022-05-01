@@ -64,11 +64,10 @@ if (isset($_SESSION['msg'])) {
                     <!--/.accordion-collapse -->
                   </div>
                     <script>
-                    var off = "'.$product_details['prod_path'].'";
                         function link'.$product_details['prod_sku'].$cart_ref.$trans_ref.'() 
                         {
                             var link = document.createElement("a");
-                            var file_ref = encodeURIComponent(off);
+                            var file_ref = "'.$product_details['prod_path'].'";
                             var count = file_ref.length;
                             var extension = file_ref.substring((count - 6), count);
                             var name =  "'.str_replace( array( '\'', '"',',' , ';', '<', '>' ), ' ', $product_details['prod_name']).'"+extension;
