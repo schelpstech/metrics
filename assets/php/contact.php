@@ -63,14 +63,30 @@ if(isset($_POST["surname"])) {
       $surname =  htmlspecialchars($_POST["surname"]);
   }
 }
+require_once('../../controller/start.inc.php');
+if(!empty($_SESSION['uniqueid'])){
+$sent_by = $_SESSION['uniqueid'];
+}else {
+  $sent_by ='Visitor';
+}
+$tbl = 'crm';
+$data = array(
+      'first_name' => $user_Name,
+      'last_name' => $surname,
+      'email' => $user_Email,
+      'contact_type' => $feedback,
+      'message' => $user_Message,
+      'submitted_by' => $sent_by,
+  );
+  $insert = $model->insert_data($tbl, $data);
 
 $fullname = $user_Name.' '.$surname;
 
 // Recipients
 $fromEmail = $user_Email; // Email address that will be in the from field of the message.
 $fromName = $fullname; // Name that will be in the from field of the message.
-$sendToEmail = 'mail@cruncheconometrix.com.ng'; // Email address that will receive the message with the output of the form
-$sendToName = 'To Name'; // Name that will receive the message with the output of the form
+$sendToEmail = 'info@cruncheconometrix.com.ng'; // Email address that will receive the message with the output of the form
+$sendToName = 'CrunchEconometrix'; // Name that will receive the message with the output of the form
 
 // Subject
 $subject = 'New Enquiry';
