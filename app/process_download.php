@@ -41,7 +41,8 @@ function downloadURI()
 {
     var link = document.createElement("a");
     var file_ref = "'.$pub_file.'";
-    var name = "'.str_replace( array( '\'', '"',',' , ';', '<', '>' ), ' ', $pub_name).'"+".pdf";
+    var extension = file_ref.substring(file_ref.lastIndexOf('.') + 1);
+    var name = "'.str_replace( array( '\'', '"',',' , ';', '<', '>' ), ' ', $pub_name).'"+extension;
     link.setAttribute("download", name);
     link.href = file_ref;
     document.body.appendChild(link);
