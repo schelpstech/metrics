@@ -1,12 +1,12 @@
 <?php
-
+require_once('../controller/start.inc.php');
 if (isset($_SESSION['msg'])) {
   printf('<b>%s</b>', $_SESSION['msg']);
   unset($_SESSION['msg']);
 }
 ?>
 
-<section class="wrapper bg-light">
+<section id="my_files" class="wrapper bg-light">
   <div class="container">
     <div class="card bg-soft-primary rounded-4 mt-2 mb-13 mb-md-17">
       <div class="card-body p-md-10 py-xl-11 px-xl-15">
@@ -15,11 +15,16 @@ if (isset($_SESSION['msg'])) {
           <div class="accordion accordion-wrapper" id="accordionIconExample">
            
           <?php
+          if(!isset($_SESSION['uniqueid'])){
+            $owner = $_POST['owner'];
+          }else{
+            $owner = $_SESSION['uniqueid'];
+          }
            $tblName = 'permission_tbl';
            $conditions = array(
                   'order_by'=> 'rectime DESC',
                   'where' => array(
-                  'user_id' => $_SESSION['uniqueid'],
+                  'user_id' => $owner,
                   )
                 );
                 $get_item = $model->getRows($tblName, $conditions);
@@ -27,6 +32,7 @@ if (isset($_SESSION['msg'])) {
 
                 
                 foreach($get_item as $item){
+                  $perm_ref = $item['perm_id'];
                   $permission = $item['dwn_count'];
                   $trans_ref = $item['trans_ref'];
                   $cart_ref = $item['cart_ref'];
@@ -39,24 +45,26 @@ if (isset($_SESSION['msg'])) {
                     )
                     );
                     $product_details = $model->getRows($tablename, $conditions);
-                    
-
-                    echo '
+                    ?>
                     <div class="card accordion-item icon">
                     <div class="card-header" id="headingIconOne">
-                      <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseIconOne'.$product_details['prod_sku'].$cart_ref.$trans_ref.'" aria-expanded="false" aria-controls="collapseIconOne'.$product_details['prod_sku'].$cart_ref.$trans_ref.'"><span><i class="uil uil-play-circle"></i></span>'.$product_details['prod_name'].'</button>
+                      <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseIconOne<?php echo $product_details['prod_sku'].$cart_ref.$trans_ref?>" aria-expanded="false" aria-controls="collapseIconOne<?php echo $product_details['prod_sku'].$cart_ref.$trans_ref?>"><span><i class="uil uil-play-circle"></i></span><?php echo $product_details['prod_name']?></button>
                     </div>
                     <!--/.card-header -->
-                    <div id="collapseIconOne'.$product_details['prod_sku'].$cart_ref.$trans_ref.'" class="accordion-collapse collapse" aria-labelledby="headingIconOne" data-bs-parent="#accordionIconExample">
+                    <div id="collapseIconOne<?php echo $product_details['prod_sku'].$cart_ref.$trans_ref?>" class="accordion-collapse collapse" aria-labelledby="headingIconOne" data-bs-parent="#accordionIconExample">
                       <div class="card-body">
                         
-                        <p> <strong>Resource Type :</strong> '.$product_details['prod_type'].'</p>
-                        <p> <strong> Description :</strong> '.$product_details['prod_desc'].'</p>
-                        <p> <strong>Amount Paid : </strong> '.$product_details['prod_price'].'</p>
-                        <p> <strong>Remaining Download Access : </strong> '.$permission.'</p>
-                        <p> <strong> Date Purchased : </strong>'.$date.'</p>
-                        <a class="btn btn-primary btn-icon btn-icon-start rounded" onclick="link'.$product_details['prod_sku'].$cart_ref.$trans_ref.'()">
-                              <i class="uil uil-money-withdraw"></i> Download '.$product_details['prod_type'].'
+                        <p> <strong>Resource Type :</strong>  <?php echo $product_details['prod_type']?></p>
+                        <p> <strong> Description :</strong>  <?php echo $product_details['prod_desc']?></p>
+                        <p> <strong>Amount Paid : </strong>  <?php echo $product_details['prod_price']?></p>
+                        <?php
+                          if($permission >= 1){
+                        ?>
+                        <p> <strong>Remaining Download Access : </strong>  <?php echo $permission?></p>
+                        
+                        <p> <strong> Date Purchased : </strong> <?php echo $date?></p>
+                        <a class="btn btn-primary btn-icon btn-icon-start rounded" onclick="link<?php echo $product_details['prod_sku'].$cart_ref.$trans_ref?>()">
+                              <i class="uil uil-money-withdraw"></i> Download <?php echo $product_details['prod_type']?>
                         </a>  
                       </div>
                       <!--/.card-body -->
@@ -64,30 +72,62 @@ if (isset($_SESSION['msg'])) {
                     <!--/.accordion-collapse -->
                   </div>
                     <script>
-                        function link'.$product_details['prod_sku'].$cart_ref.$trans_ref.'() 
+                        function link<?php echo $product_details['prod_sku'].$cart_ref.$trans_ref?>() 
                         {
+
                             var link = document.createElement("a");
-                            var file_ref = "'.$product_details['prod_path'].'";
+                            var file_ref = '<?php echo $product_details['prod_path'] ?>';
                             var count = file_ref.length;
                             var extension = file_ref.substring((count - 6), count);
-                            var name =  "'.str_replace( array( '\'', '"',',' , ';', '<', '>' ), ' ', $product_details['prod_name']).'"+extension;
-                            link.setAttribute("download", name);
-                            link.href = file_ref;
-                            document.body.appendChild(link);
-                            link.click();
-                            link.remove();
-                        }
+                            var name =  "<?php echo str_replace( array( '\'', '"',',' , ';', '<', '>' ), ' ', $product_details['prod_name'])?>.'"+extension;
+                            
+                                    var perm_ref = '<?php echo $perm_ref;?>';
+                                    var owner = '<?php echo $owner;?>';
+                                    $.ajax({
+                                        url: '../app/record_download.php',
+                                        method: 'POST',
+                                        data: {                                            
+                                          perm_ref: perm_ref
+                                        },
+                                        success: function(data) {
+                                          if(data == 11){
+                                            link.setAttribute("download", name);
+                                            link.href = file_ref;
+                                            document.body.appendChild(link);
+                                            link.click();
+                                            link.remove();
+                                            $(document).ready(function(){
+		
+                                            $.ajax({
+                                              url: '../app/process_src.php',
+                                              method: 'POST',
+                                              data: {                                            
+                                                owner: owner
+                                              },
+                                              success: function(data){
+                                                $("#my_files").html(data);
+                                              }
+                                            })
+                                          });
+                                          }
+                                        }
+                                      })
+                        };
                     </script>
-                    ';
-                    
-
-                }
-              }else{
-                echo 'No purchases made ';
-              }
-
-
-          ?>
+                <?php
+                          }else{
+                ?>
+                           <p> <strong>Remaining Download Access : </strong>  <?php echo $permission?></p>
+                           <p style="color:red;"> <strong> File already downloaded on   <?php echo $date?></strong></p>
+                <?php
+                          }
+                ?>
+                <?php
+                  }
+                  }else{
+                      echo 'No purchases made ';
+                      }
+                ?>
        
             
 

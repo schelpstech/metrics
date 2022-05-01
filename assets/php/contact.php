@@ -76,16 +76,16 @@ $sendToName = 'To Name'; // Name that will receive the message with the output o
 $subject = 'New Enquiry';
 
 // SMTP settings
-$smtpUse = false; // Set to true to enable SMTP authentication
+$smtpUse = true; // Set to true to enable SMTP authentication
 $smtpHost = 'mail.cruncheconometrix.com.ng'; // Enter SMTP host ie. smtp.gmail.com
-$smtpUsername = 'mail@cruncheconometrix.com.ng'; // SMTP username ie. gmail address
+$smtpUsername = 'info@cruncheconometrix.com.ng'; // SMTP username ie. gmail address
 $smtpPassword = '%datangozi2018???'; // SMTP password ie gmail password
 $smtpSecure = 'ssl'; // Enable TLS or SSL encryption
 $smtpAutoTLS = false; // Enable Auto TLS
 $smtpPort = 465; // TCP port to connect to
 
 // Success and error alerts
-$okMessage = 'We have received your inquiry. Stay tuned, we’ll get back to you very soon.';
+$okMessage = 'We have received your message. Stay tuned, we’ll get back to you ASAP!.';
 $errorMessage = 'There was an error while submitting the form. Please try again later';
 
 
