@@ -36,12 +36,42 @@ $conditions = array(
 //Count Orders
 $tblName = 'trans_tbl';
 $conditions = array(
-  'return_type' => 'count',
-  
+  'return_type' => 'count', 
 );
 $count_order = $model->getRows($tblName, $conditions);
 
-//Sales Revenue
+
+//Count Successful Orders
+$tblName = 'trans_tbl';
+$conditions = array(
+  'return_type' => 'count', 
+  'where' => array(
+    'trans_status' => 1,
+  )
+);
+$count_success_order = $model->getRows($tblName, $conditions);
+
+//Count Failed Orders
+$tblName = 'trans_tbl';
+$conditions = array(
+  'return_type' => 'count', 
+  'where' => array(
+    'trans_status' => 0,
+  )
+);
+$count_failed_order = $model->getRows($tblName, $conditions);
+
+//Count Fulfilled Orders
+$tblName = 'permission_tbl';
+$conditions = array(
+  'return_type' => 'count', 
+  'where' => array(
+    'dwn_count' => 1,
+  )
+);
+$count_fulfilled_order = $model->getRows($tblName, $conditions);
+
+//Successful Sales Revenue
 $tblName = 'trans_tbl';
 $conditions = array(
   'return_type' => 'single',
@@ -50,8 +80,22 @@ $conditions = array(
     'trans_status' => 1,
   )
 );
-$sum_order = $model->getRows($tblName, $conditions);
-//Sales Revenue
+$sum_success_order = $model->getRows($tblName, $conditions);
+
+//Failed Sales Revenue
+$tblName = 'trans_tbl';
+$conditions = array(
+  'return_type' => 'single',
+  'select' => 'SUM(trans_amount) as total_revenue',
+  'where' => array(
+    'trans_status' => 0,
+  )
+);
+$sum_failed_order = $model->getRows($tblName, $conditions);
+
+//total revenue
+$sum_order = $sum_success_order['total_revenue'] + $sum_failed_order['total_revenue'];
+//Sales Revenue today
 $conditions = array(
   'return_type' => 'single',
   'select' => 'SUM(trans_amount) as total_revenue',
@@ -123,3 +167,6 @@ $conditions = array(
     'limit'=> '5',
   );
   $login_view = $model->getRows($tblName, $conditions);
+
+
+  

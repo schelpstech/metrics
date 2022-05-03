@@ -123,14 +123,10 @@ include "lookup.php";
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
                   data-feather="grid"></i><span>Manage Sales</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="pricing.php">Transaction Log</a></li>
-                <li><a class="nav-link" href="report.php">Sales Coupon</a></li>
-                <li><a class="nav-link" href="withdraw.php">Withrawal</a></li>
+                <li><a class="nav-link" href="salesboard.php">Dashboard</a></li>
+                <li><a class="nav-link" href="coupon.php">Sales Coupon</a></li>
               </ul>
-            </li>
-            
-         
-            
+            </li> 
           </ul>
         </aside>
       </div>
