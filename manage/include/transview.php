@@ -89,7 +89,7 @@
                                               'user_id' =>  $trans_user,
                                             ),
                                           );
-                                        $cartview = $model->getRows($tablename);
+                                        $cartview = $model->getRows($tablename , $conditions);
                                         
                                         foreach($cartview as $view){
 
