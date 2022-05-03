@@ -41,10 +41,10 @@ include "../include/nav.php";
                   <div class="card-bg">
                     <div class="p-t-20 d-flex justify-content-between">
                       <div class="col">
-                        <h6 class="mb-0">Paying Users</h6>
-                        <span class="font-weight-bold mb-0 font-20">+22.58%</span>
+                        <h6 class="mb-0">Users with Item in Cart</h6>
+                        <span class="font-weight-bold mb-0 font-20"><?php echo  $cart_users ?></span>
                       </div>
-                      <i class="fas fa-chart-bar card-icon col-indigo font-30 p-r-30"></i>
+                      <i class="fas fa-cart-plus card-icon col-indigo font-30 p-r-30"></i>
                     </div>
                     <canvas id="cardChart3" height="80"></canvas>
                   </div>

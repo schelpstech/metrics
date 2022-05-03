@@ -1,7 +1,4 @@
 <?php
-include "../include/nav.php";
-?>
-<?php
 if (isset($_GET['trans_ref'])) {
     $trans_ref = $_GET['trans_ref'];
     include "../include/nav.php";

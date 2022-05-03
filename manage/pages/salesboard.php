@@ -79,7 +79,7 @@ include "../include/nav.php";
                                 </div>
                                 <div class="col-auto">
                                     <div class="card-circle l-bg-purple text-white">
-                                        <i class="fas fa-dollar-sign"></i>
+                                        <i class="fas fa-cart-plus"></i>
                                     </div>
                                 </div>
                             </div>
@@ -119,41 +119,41 @@ include "../include/nav.php";
                                         $count = 1;
                                         $tablename = 'trans_tbl';
                                         $transview = $model->getRows($tablename);
-                                        foreach($transview as $view){
+                                        foreach ($transview as $view) {
                                             $tablename = 'crunch_user';
                                             $conditions = array(
                                                 'return_type' => 'single',
                                                 'where' => array(
-                                                  'useremail' => $view['trans_user'],
+                                                    'useremail' => $view['trans_user'],
                                                 ),
-                                              );
-                                              $userdetails = $model->getRows($tablename, $conditions);   
+                                            );
+                                            $userdetails = $model->getRows($tablename, $conditions);
                                         ?>
-                                        
-                                        <tr>
-                                            <td> <?php echo $count++ ?></td>
-                                            <td> <?php echo ucwords($view['trans_time']); ?></td>
-                                            <td> <?php echo ucwords($view['trans_ref']); ?></td>
-                                            <td> <?php echo ucwords($userdetails['user_firstname']." ".$userdetails['user_surname']); ?></td>
-                                            <td> <?php echo ucwords($view['trans_user']); ?></td>
-                                            <td> <?php echo strtolower($view['trans_qty']); ?></td>
-                                            <td> <?php echo strtolower($view['trans_amount']); ?></td>
-                                            <td> <?php
-                                                            if ($view['trans_status'] == 1) {
-                                                                echo '<a href="#" class="btn btn-icon icon-left btn-success">Success</a>';
-                                                            } else {
-                                                                echo '<a href="#" class="btn btn-icon icon-left btn-danger">Incomplete</a>';
-                                                            }
-                                                            ?>
-                                            </td>
-                                            <td> <a href="./translog.php?trans_ref=<?php echo $view['trans_ref']; ?>" class="btn btn-info">View</a></td>
-                                                    
-                                            
-                                        </tr>
-                                       <?php 
+
+                                            <tr>
+                                                <td> <?php echo $count++ ?></td>
+                                                <td> <?php echo ucwords($view['trans_time']); ?></td>
+                                                <td> <?php echo ucwords($view['trans_ref']); ?></td>
+                                                <td> <?php echo ucwords($userdetails['user_firstname'] . " " . $userdetails['user_surname']); ?></td>
+                                                <td> <?php echo ucwords($view['trans_user']); ?></td>
+                                                <td> <?php echo strtolower($view['trans_qty']); ?></td>
+                                                <td> <?php echo strtolower($view['trans_amount']); ?></td>
+                                                <td> <?php
+                                                        if ($view['trans_status'] == 1) {
+                                                            echo '<a href="#" class="btn btn-icon icon-left btn-success">Success</a>';
+                                                        } else {
+                                                            echo '<a href="#" class="btn btn-icon icon-left btn-danger">Incomplete</a>';
+                                                        }
+                                                        ?>
+                                                </td>
+                                                <td> <a href="./translog.php?trans_ref=<?php echo $view['trans_ref']; ?>" class="btn btn-info">View</a></td>
+
+
+                                            </tr>
+                                        <?php
                                         }
                                         ?>
-                           
+
                                     </tbody>
                                 </table>
                             </div>
