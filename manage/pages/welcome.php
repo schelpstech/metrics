@@ -93,7 +93,7 @@ include "../include/nav.php";
                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                         <div class="card-content">
                           <h5 class="font-15"> Sales Revenue</h5>
-                          <h2 class="mb-3 font-18">&#8358; <?php echo  $sum_order ?></h2>
+                          <h2 class="mb-3 font-18">&#8358; <?php echo  $sum_success_order['total_revenue'] ?></h2>
                           
                         </div>
                       </div>
@@ -155,7 +155,7 @@ include "../include/nav.php";
                             <div class="list-inline-item p-r-30"><i data-feather="arrow-up-circle"
                                  class="col-green"></i>
                               <h5 class="m-b-0">&#8358;<?php echo  $sum_order_today['total_revenue'] ?></h5>
-                              <h5 class="m-b-0"><?php echo round((( $sum_order_today['total_revenue'] / $sum_order) * 100),2) ?>%</h5>
+                              <h5 class="m-b-0"><?php echo round((( $sum_order_today['total_revenue'] / $sum_success_order['total_revenue']) * 100),2) ?>%</h5>
                               <p class="text-muted font-14 m-b-0"><small> Revenue Today</small> </p>
                             </div>
                           </div>
