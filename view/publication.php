@@ -65,7 +65,7 @@ include '../assets/php/navbar.php';
                                                     <i class="uil uil-arrow-down"></i>
                                                     <span>Download</span>
                                                 </a>
-                                                <input type="text"  hidden value="https://cruncheconometrix.com.ng/view/download.php?pubid=<?php echo  $view['pub_key']?>" id="linkput<?php echo  $view['pub_key']?>">
+                                                <input type="text"  hidden value="https://cruncheconometrix.com/view/download.php?pubid=<?php echo  $view['pub_key']?>" id="linkput<?php echo  $view['pub_key']?>">
                                                 <a class="btn btn-primary btn-icon btn-icon-start rounded" onclick="copylink<?php echo  $view['pub_key']?>()">
                                                     <i class="uil uil-copy"></i> Copy Link
                                                 </a>
