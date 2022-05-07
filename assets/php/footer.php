@@ -164,7 +164,7 @@
             <ul class="list-unstyled text-reset mb-0">
               <li><a href="./aboutus.php">About Us</a></li>
               <li><a href="./datashop.php">Shop</a></li>
-              <li><a href="https://blog.cruncheconometrix.com.ng">Blog</a></li>
+              <li><a href="https://blog.cruncheconometrix.com">Blog</a></li>
               <li><a href="https://www.youtube.com/c/CrunchEconometrix">YouTube</a></li>
               <li><a href="./contact.php">Contact</a></li>
             </ul>
@@ -175,7 +175,7 @@
         <div class="col-md-4 col-lg-2">
           <div class="widget">
             <h4 class="widget-title  mb-3">Get in Touch</h4>
-            <a href="mailto:info@cruncheconometrix.com.ng" class="link-body">info@cruncheconometrix.com.ng</a><br /> 
+            <a href="mailto:info@cruncheconometrix.com" class="link-body">info@cruncheconometrix.com</a><br /> 
           </div>
           <!-- /.widget -->
         </div>

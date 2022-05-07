@@ -34,7 +34,7 @@
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="https://blog.cruncheconometrix.com.ng" >Blog</a>
+                  <a class="nav-link" href="https://blog.cruncheconometrix.com" >Blog</a>
                 </li>
                
                  <li class="nav-item ">

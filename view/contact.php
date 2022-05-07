@@ -154,7 +154,7 @@ include '../assets/php/navbar.php';
 
                   <div>
                     <h5 class="mb-1">E-mail</h5>
-                    <p class="mb-0"><a href="mailto:info@cruncheconometrix.com.ng" class="link-body">info@cruncheconometrix.com.ng</a></p>
+                    <p class="mb-0"><a href="mailto:info@cruncheconometrix.com" class="link-body">info@cruncheconometrix.com</a></p>
                   </div>
                 </div>
                 <!--/div -->
