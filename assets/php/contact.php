@@ -93,8 +93,8 @@ $subject = 'New Enquiry';
 
 // SMTP settings
 $smtpUse = true; // Set to true to enable SMTP authentication
-$smtpHost = 'mail.cruncheconometrix.com.ng'; // Enter SMTP host ie. smtp.gmail.com
-$smtpUsername = 'info@cruncheconometrix.com.ng'; // SMTP username ie. gmail address
+$smtpHost = 'mail.cruncheconometrix.com'; // Enter SMTP host ie. smtp.gmail.com
+$smtpUsername = 'info@cruncheconometrix.com'; // SMTP username ie. gmail address
 $smtpPassword = '%datangozi2018???'; // SMTP password ie gmail password
 $smtpSecure = 'ssl'; // Enable TLS or SSL encryption
 $smtpAutoTLS = false; // Enable Auto TLS
