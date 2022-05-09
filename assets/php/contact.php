@@ -7,27 +7,37 @@ use PHPMailer\PHPMailer\SMTP;
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
-require '../../app/utility.php';
 require '../../controller/start.inc.php';
 /*
 *  CONFIGURATION
 */
 
+//captcha
+$recaptcha = $_POST['g-recaptcha-response'];
 $tblName = 'payment';
 $conditions = array(
 'return_type' => 'single',
 'where' => array(
-'payerid' => 3,
+'payerid' => 2,
 )
 
 );
-
-$recaptcha = $_POST['g-recaptcha-response'];
-$res = reCaptcha($recaptcha);
+$captcha = $model->getRows($tblName, $conditions);
+$secret = $captcha['secret'];
+$ip = $_SERVER['REMOTE_ADDR'];
+$postvars = array("secret"=>$secret, "response"=>$recaptcha, "remoteip"=>$ip);
+$url = "https://www.google.com/recaptcha/api/siteverify";
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $postvars);
+$data = curl_exec($ch);
+curl_close($ch);
+$res =  json_decode($data, true);
 if($res['success']){
+
   // Send email
-
-
 if(isset($_POST["email"])) {
   if(!isset($_POST["email"]))
   {
@@ -99,10 +109,22 @@ $data = array(
 
 $fullname = $user_Name.' '.$surname;
 
+
+
+$tblName = 'payment';
+$conditions = array(
+'return_type' => 'single',
+'where' => array(
+'payerid' => 3,
+)
+
+);
+$mail_find = $model->getRows($tblName, $conditions);
+
 // Recipients
 $fromEmail = $user_Email; // Email address that will be in the from field of the message.
 $fromName = $fullname; // Name that will be in the from field of the message.
-$sendToEmail =  $captcha['public']; // Email address that will receive the message with the output of the form
+$sendToEmail =  $mail_find['public']; // Email address that will receive the message with the output of the form
 $sendToName = 'CrunchEconometrix'; // Name that will receive the message with the output of the form
 
 // Subject
@@ -110,15 +132,15 @@ $subject = 'New Enquiry';
 
 // SMTP settings
 $smtpUse = true; // Set to true to enable SMTP authentication
-$smtpHost =  $captcha['company']; // Enter SMTP host ie. smtp.gmail.com
-$smtpUsername =  $captcha['public']; // SMTP username ie. gmail address
-$smtpPassword =  $captcha['secret']; // SMTP password ie gmail password
+$smtpHost =  $mail_find['company']; // Enter SMTP host ie. smtp.gmail.com
+$smtpUsername =  $mail_find['public']; // SMTP username ie. gmail address
+$smtpPassword =  $mail_find['secret']; // SMTP password ie gmail password
 $smtpSecure = 'ssl'; // Enable TLS or SSL encryption
 $smtpAutoTLS = false; // Enable Auto TLS
 $smtpPort = 465; // TCP port to connect to
 
 // Success and error alerts
-$okMessage = 'We have received your message. Stay tuned, we’ll get back to you ASAP!.';
+$okMessage = 'We have received your message. Stay tuned, we’ll get back to you ASAP!';
 $errorMessage = 'There was an error while submitting the form. Please try again later';
 
 
@@ -138,12 +160,23 @@ try {
                             <tr>
                               <td align="left">
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                                  <tbody>
+                                <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Fullname</th>
+                                            <th>Email Address</th>
+                                            <th>Feedback Type</th>
+                                            <th>Message</th>
+                                            
+                                        </tr>
+                                    </thead>  
+                                <tbody>
                                     <tr>
-                                      <td>Fullname = '.$fullname.'</td>
-                                      <td>Email Address = '.$fromEmail.'</td>
-                                      <td>Feedback Type = '.$feedback.'</td>
-                                      <td>Message = '.$user_Message.'</td>
+                                      <td> '.date("d-m-Y").'</td>
+                                      <td> '.$fullname.'</td>
+                                      <td> '.$fromEmail.'</td>
+                                      <td>'.$feedback.'</td>
+                                      <td>'.$user_Message.'</td>
                                     </tr>
                                   </tbody>
                                 </table>

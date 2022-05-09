@@ -1,5 +1,5 @@
 <?php
-
+ 
     function generateRandomString($length = 16)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -23,7 +23,7 @@
     }
 
     function reCaptcha($recaptcha){
-        require_once '../controller/start.inc.php';
+        require_once('../controller/start.inc.php');
         $tblName = 'payment';
         $conditions = array(
         'return_type' => 'single',
