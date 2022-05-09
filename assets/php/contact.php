@@ -8,10 +8,19 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 require '../../app/utility.php';
-
+require '../../controller/start.inc.php';
 /*
 *  CONFIGURATION
 */
+
+$tblName = 'payment';
+$conditions = array(
+'return_type' => 'single',
+'where' => array(
+'payerid' => 3,
+)
+
+);
 
 $recaptcha = $_POST['g-recaptcha-response'];
 $res = reCaptcha($recaptcha);
@@ -71,7 +80,7 @@ if(isset($_POST["surname"])) {
       $surname =  htmlspecialchars($_POST["surname"]);
   }
 }
-require_once('../../controller/start.inc.php');
+
 if(!empty($_SESSION['uniqueid'])){
 $sent_by = $_SESSION['uniqueid'];
 }else {
@@ -93,7 +102,7 @@ $fullname = $user_Name.' '.$surname;
 // Recipients
 $fromEmail = $user_Email; // Email address that will be in the from field of the message.
 $fromName = $fullname; // Name that will be in the from field of the message.
-$sendToEmail = 'info@cruncheconometrix.com.ng'; // Email address that will receive the message with the output of the form
+$sendToEmail =  $captcha['public']; // Email address that will receive the message with the output of the form
 $sendToName = 'CrunchEconometrix'; // Name that will receive the message with the output of the form
 
 // Subject
@@ -101,9 +110,9 @@ $subject = 'New Enquiry';
 
 // SMTP settings
 $smtpUse = true; // Set to true to enable SMTP authentication
-$smtpHost = 'mail.cruncheconometrix.com'; // Enter SMTP host ie. smtp.gmail.com
-$smtpUsername = 'info@cruncheconometrix.com'; // SMTP username ie. gmail address
-$smtpPassword = '%datangozi2018???'; // SMTP password ie gmail password
+$smtpHost =  $captcha['company']; // Enter SMTP host ie. smtp.gmail.com
+$smtpUsername =  $captcha['public']; // SMTP username ie. gmail address
+$smtpPassword =  $captcha['secret']; // SMTP password ie gmail password
 $smtpSecure = 'ssl'; // Enable TLS or SSL encryption
 $smtpAutoTLS = false; // Enable Auto TLS
 $smtpPort = 465; // TCP port to connect to
