@@ -7,10 +7,18 @@ use PHPMailer\PHPMailer\SMTP;
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
+require '../../app/utility.php';
 
 /*
 *  CONFIGURATION
 */
+
+$recaptcha = $_POST['g-recaptcha-response'];
+$res = reCaptcha($recaptcha);
+if($res['success']){
+  // Send email
+
+
 if(isset($_POST["email"])) {
   if(!isset($_POST["email"]))
   {
@@ -181,4 +189,8 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
 // else just display the message
 else {
   echo $responseArray['message'];
+}
+}else{
+  $responseArray = array('type' => 'danger', 'message' => 'Invalid Request. Ensure to check the captcha');
+  echo  $responseArray['message'];
 }

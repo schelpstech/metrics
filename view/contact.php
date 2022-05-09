@@ -1,6 +1,16 @@
 <?php
 include '../assets/php/header.php';
 include '../assets/php/navbar.php';
+//Get public key
+$tblName = 'payment';
+$conditions = array(
+  'return_type' => 'single',
+  'where' => array(
+    'payerid' => 2,
+  )
+
+);
+$captcha = $model->getRows($tblName, $conditions);
 ?>
 
 <section class="wrapper bg-light">
@@ -109,8 +119,9 @@ include '../assets/php/navbar.php';
                 <div class="invalid-feedback"> Please enter your messsage. </div>
               </div>
             </div>
+            <div class="g-recaptcha brochure__form__captcha" data-sitekey="<?php echo $captcha['public']?>"></div>
             <!-- /column -->
-            <div class="col-12 text-center">
+            
               <input type="submit" class="btn btn-primary rounded-pill btn-send mb-3" value="Send message">
               <p class="text-muted"><strong>*</strong> These fields are required.</p>
             </div>

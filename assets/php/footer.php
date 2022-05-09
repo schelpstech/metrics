@@ -203,6 +203,7 @@
   </div>
   <script src="../assets/js/plugins.js"></script>
   <script src="../assets/js/theme.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
   
 </body>
 
