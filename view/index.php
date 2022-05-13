@@ -38,7 +38,7 @@ include '../assets/php/navbar.php';
           </div>
           <!--/column -->
           <div class="col-lg-6 text-center text-lg-start" data-cues="slideInDown" data-group="page-title" data-delay="600">
-            <h1 class="display-2 mb-5">Econometrics and Data Analysis Resources</h1>
+            <h1 class="display-2 mb-5"></br></br>Econometrics and Data Analysis Resources</h1>
             <p class="lead fs-lg lh-sm mb-7 pe-xl-10">CrunchEconometrix is tailored for beginners
               and for those who want to improve their understanding
               of econometrics and data analysis</p>
