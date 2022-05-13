@@ -50,7 +50,7 @@
               <!-- /.navbar-nav -->
               <div class="offcanvas-footer d-lg-none">
                 <div>
-                <a href="mailto:cruncheconometrix@gmail.com" class="link-body">cruncheconometrix@gmail.com</a>
+                <a href="mailto:info@cruncheconometrix.com" class="link-body">info@cruncheconometrix.com</a>
            <br />
                   <nav class="nav social social-white mt-4">
                     <a href="https://twitter.com/crunchmetrix"><i class="uil uil-twitter"></i></a>

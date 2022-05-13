@@ -18,7 +18,7 @@ include '../assets/php/navbar.php';
           <div class="col-lg-6 order-lg-2 d-flex position-relative">
             <img class="img-fluid ms-auto mx-auto me-lg-8" src="../assets/img/web/adeleye.png" srcset="../assets/img/web/adeleye.png" alt="" data-cue="fadeIn">
             <div data-cue="slideInRight" data-delay="300">
-              <div class="card shadow-lg position-absolute" style="bottom: -10%; right: -30%;">
+              <div class="card shadow-lg position-absolute" style="bottom: -20%; right: -30%;">
                 <div class="card-body py-4 px-5">
                   <div class="d-flex flex-row align-items-center">
                     <div>
@@ -137,22 +137,23 @@ include '../assets/php/navbar.php';
 
     <!--/.row -->
     <div class="row gy-6 align-items-center mb-14 mb-md-18">
-      <div class="col-lg-2">
+      <div class="col-lg-4">
         <h3 class="display-4 mb-5">Online Courses</h3>
         <small class="lead fs-lg mb-5">Buy comprehensive courses on Econometrics using Stata, Excel and EViews analytical software</small>
 
       </div>
       <!--/column -->
-      <div class="col-lg-9 offset-lg-1 pricing-wrapper">
+      <div class="col-lg-6 offset-lg-2 pricing-wrapper">
 
         <div class="row gy-6 mt-5">
-          <div class="col-md-6">
+        <!--
+        <div class="col-md-6">
             <div class="pricing card shadow-lg">
               <div class="card-body pb-12">
                 <div class="prices text-dark">
                   <div class="price price-show"><span class="price-currency">$</span><span class="price-value">200</span> <span class="price-duration">life time access</span></div>
                 </div>
-                <!--/.prices -->
+                
                 <h4 class="card-title mt-2">Hands-on Econometrics for Beginners and Advanced Users (H.E.B.A)</h4>
                 <ul class="icon-list bullet-bg bullet-soft-primary mt-8 mb-9">
                   <li><i class="uil uil-check"></i><span> 14 hours on-demand video </span></li>
@@ -163,12 +164,9 @@ include '../assets/php/navbar.php';
                 </ul>
                 <a href="#" disabled class="btn btn-primary rounded-pill">Buy on CrunchEconometrix </a>
               </div>
-              <!--/.card-body -->
             </div>
-            <!--/.pricing -->
-          </div>
-          <!--/column -->
-          <div class="col-md-6 popular">
+          </div> -->
+          <div class="col-md-8 popular">
             <div class="pricing card shadow-lg">
               <div class="card-body pb-12">
                 <div class="prices text-dark">

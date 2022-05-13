@@ -6,7 +6,7 @@ include '../assets/php/navbar.php';
       <div class="container pt-10 pt-md-14 text-center">
         <div class="row">
           <div class="col-xl-6 mx-auto">
-            <h1 class="display-1 mb-4">Welcome to CrunchEconometrix</h1>
+            <h1 class="display-1 mb-4">Welcome to</br> CrunchEconometrix</br></br></h1>
           </div>
           <!-- /column -->
         </div>
