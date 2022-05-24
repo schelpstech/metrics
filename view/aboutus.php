@@ -21,10 +21,10 @@ include '../assets/php/navbar.php';
             <div class="shape bg-dot primary rellax w-16 h-20" data-rellax-speed="1" style="top: 3rem; left: 5.5rem"></div>
             <div class="overlap-grid overlap-grid-2">
               <div class="item">
-                <figure class="rounded shadow"><img src="../assets/img/web/i14.png" srcset="../assets/img/web/i14@2x.png" alt=""></figure>
+                <figure class="rounded shadow"><img src="../assets/img/web/crunchtraining1.jpg" srcset="../assets/img/web/crunchtraining1.jpg" alt=""></figure>
               </div>
               <div class="item">
-                <figure class="rounded shadow"><img src="../assets/img/web/ui2.png" srcset="../assets/img/web/ui2@2x.png" alt=""></figure>
+                <figure class="rounded shadow"><img src="../assets/img/web/crunchtraining.jpg" srcset="../assets/img/web/crunchtraining.jpg" alt=""></figure>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@ include '../assets/php/navbar.php';
             <h2 class="display-6 mb-3">How It Works?</h2>
              
             <p class="lead fs-lg pe-lg-5">CrunchEconometrix is tailored for beginners; 
-                those newly starting on the subject and for those who want to improve their understanding of Stata analytical software.</p>
+                those newly starting on the subject and for those who want to improve their understanding of Stata and EViews analytical software.</p>
             <p>However, intermediate and advanced econometricians can join in too by contributing and improving the quality of contents provided.</p>
             <p class="mb-6">For starters, CrunchEconometrix will build your confidence, teach you how to formulate a hypothesis, analyse your model, interpret results and so much more</p>
             <a href="#" class="btn btn-primary rounded-pill mb-0">Learn More</a>

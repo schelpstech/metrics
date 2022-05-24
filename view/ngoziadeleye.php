@@ -42,8 +42,8 @@ include '../assets/php/navbar.php';
                     <div class="col-xl-6">
                       <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
                         <li><span><i class="uil uil-check"></i></span><span>Skilled and confident in classroom and online teaching.</span></li>
-                        <li><span><i class="uil uil-check"></i></span><span>Teach microeconomics and financial economics (Bachelor class)</span></li>
-                        <li><span><i class="uil uil-check"></i></span><span>Teach advanced microeconomics and applied econometrics (Master class)</span></li>
+                        <li><span><i class="uil uil-check"></i></span><span>Teach microeconomics and financial economics (Undergraduates)</span></li>
+                        <li><span><i class="uil uil-check"></i></span><span>Teach advanced microeconomics and applied econometrics (Postgraduates)</span></li>
                       </ul>
                     </div>
                     <!--/column -->
