@@ -38,7 +38,10 @@ include "../include/nav.php";
                                         <?php
                                         $count = 1;
                                         $tablename = 'publication_tbl';
-                                        $articleview = $model->getRows($tablename);
+                                        $conditions = array(
+                                            'order_by' =>  'rectime DESC',
+                                        );
+                                        $articleview = $model->getRows($tablename, $conditions );
                                         if (!empty($articleview)) {
                                             foreach ($articleview as $view) {
                                         ?>
