@@ -16,7 +16,7 @@ include '../assets/php/navbar.php';
           }
           ?>
           <div class="col-lg-6 order-lg-2 d-flex position-relative">
-            <img class="img-fluid ms-auto mx-auto me-lg-8" src="../assets/img/web/adeleye.png" srcset="../assets/img/web/adeleye.png" alt="" data-cue="fadeIn">
+            <img class="img-fluid ms-auto mx-auto me-lg-8" src="../assets/img/web/mrsadeleye.png" srcset="../assets/img/web/mrsadeleye.png" alt="" data-cue="fadeIn">
             <div data-cue="slideInRight" data-delay="300">
               <div class="card shadow-lg position-absolute" style="bottom: -30%; right: -30%;">
                 <div class="card-body py-4 px-5">
