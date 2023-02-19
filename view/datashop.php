@@ -38,7 +38,11 @@ if (isset($_SESSION['uniqueid'])) {
             <!--/column -->
             <div class="col-md-4 col-lg-3 ms-md-auto text-md-end mt-5 mt-md-0">
                 <div class="form-select-wrapper" id="cart_button">
-                <button class="btn btn-outline-gradient gradient-1 rounded-pill me-1 mb-2 mb-md-0" onclick="window.location.replace('./mycart.php');"><i class="uil uil-shopping-cart"></i><span> <?php if (isset($_SESSION['cart_check'])) { echo $_SESSION['cart_check'];} else{echo 0;}?> item(s) in cart</span></button>
+                    <button class="btn btn-outline-gradient gradient-1 rounded-pill me-1 mb-2 mb-md-0" onclick="window.location.replace('./mycart.php');"><i class="uil uil-shopping-cart"></i><span> <?php if (isset($_SESSION['cart_check'])) {
+                                                                                                                                                                                                            echo $_SESSION['cart_check'];
+                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                            echo 0;
+                                                                                                                                                                                                        } ?> item(s) in cart</span></button>
                 </div>
                 <!--/.form-select-wrapper -->
             </div>
@@ -56,8 +60,7 @@ if (isset($_SESSION['uniqueid'])) {
             <div class="row gx-md-8 gy-10 gy-md-13 isotope">
                 <?php
                 $count = 1;
-                $tablename = 'prod_sku';
-                $productview = $model->getRows($tablename);
+                $productview = $model->getRows('prod_sku');
                 $conditions = array(
                     'where' => array(
                         'prod_status' => 1,
@@ -73,30 +76,34 @@ if (isset($_SESSION['uniqueid'])) {
                             <figure class="rounded mb-6">
                                 <img src=" <?php echo $view['prod_img']; ?>" srcset="<?php echo $view['prod_img']; ?>" alt="" />
                                 <?php
+                                if ($view['prod_price'] != 0) {
+                                    $tblName = 'cart_log';
+                                    $conditions = array(
+                                        'return_type' => 'single',
+                                        'where' => array(
+                                            'prod_sku' => $view['prod_sku'],
+                                            'user_id' => $cart_user,
+                                            'token' => $cart_token,
+                                        )
 
-                                $tblName = 'cart_log';
-                                $conditions = array(
-                                    'return_type' => 'single',
-                                    'where' => array(
-                                        'prod_sku' => $view['prod_sku'],
-                                        'user_id' => $cart_user,
-                                        'token' => $cart_token,
-                                    )
-
-                                );
-                                $checkcart = $model->getRows($tblName, $conditions);
-                                if (!empty($checkcart)) {
-                                    if ($checkcart['item_status'] == 0) {
+                                    );
+                                    $checkcart = $model->getRows($tblName, $conditions);
+                                    if (!empty($checkcart)) {
+                                        if ($checkcart['item_status'] == 0) {
+                                            echo '  <button  id="' . $view['prod_sku'] . '" onclick="' . $view['prod_sku'] . '()" class="item-cart"><i class="uil uil-shopping-bag"></i> Add to Cart</button>
+                                                    <button style="display:none;" id="' . $view['prod_sku'] . 'removed" onclick="' . $view['prod_sku'] . 'remove()" class="item-cart"><i class="uil uil-shopping-bag"></i> Remove from Cart</button>';
+                                        } elseif ($checkcart['item_status'] == 1) {
+                                            echo '  <button style="display:none;" id="' . $view['prod_sku'] . '" onclick="' . $view['prod_sku'] . '()" class="item-cart"><i class="uil uil-shopping-bag"></i> Add to Cart</button>
+                                                    <button  id="' . $view['prod_sku'] . 'removed" onclick="' . $view['prod_sku'] . 'remove()" class="item-cart"><i class="uil uil-shopping-bag"></i> Remove from Cart</button>';
+                                        }
+                                    } else {
                                         echo '  <button  id="' . $view['prod_sku'] . '" onclick="' . $view['prod_sku'] . '()" class="item-cart"><i class="uil uil-shopping-bag"></i> Add to Cart</button>
-                                            <button style="display:none;" id="' . $view['prod_sku'] . 'removed" onclick="' . $view['prod_sku'] . 'remove()" class="item-cart"><i class="uil uil-shopping-bag"></i> Remove from Cart</button>';
-                                    } elseif ($checkcart['item_status'] == 1) {
-                                        echo '  <button style="display:none;" id="' . $view['prod_sku'] . '" onclick="' . $view['prod_sku'] . '()" class="item-cart"><i class="uil uil-shopping-bag"></i> Add to Cart</button>
-                                            <button  id="' . $view['prod_sku'] . 'removed" onclick="' . $view['prod_sku'] . 'remove()" class="item-cart"><i class="uil uil-shopping-bag"></i> Remove from Cart</button>';
+                                                <button style="display:none;" id="' . $view['prod_sku'] . 'removed" onclick="' . $view['prod_sku'] . 'remove()" class="item-cart"><i class="uil uil-shopping-bag"></i> Remove from Cart</button>';
                                     }
                                 } else {
-                                    echo '  <button  id="' . $view['prod_sku'] . '" onclick="' . $view['prod_sku'] . '()" class="item-cart"><i class="uil uil-shopping-bag"></i> Add to Cart</button>
-                                        <button style="display:none;" id="' . $view['prod_sku'] . 'removed" onclick="' . $view['prod_sku'] . 'remove()" class="item-cart"><i class="uil uil-shopping-bag"></i> Remove from Cart</button>';
+                                    echo '  <button  id="' . $view['prod_sku'] . '" onclick="' . $view['prod_sku'].'download()" class="item-cart"><i class="uil uil-download"></i> Download</button>';
                                 }
+
 
                                 ?>
 
@@ -104,13 +111,13 @@ if (isset($_SESSION['uniqueid'])) {
                             </figure>
                             <div class="post-header">
                                 <div class="d-flex flex-row align-items-center justify-content-between mb-2">
-                                    <div class="post-category text-ash mb-0"> 
+                                    <div class="post-category text-ash mb-0">
                                         <h2 class="price"> <ins><span class="amount">&#8358;<?php echo $view['prod_price']; ?>.00</span></ins></h2>
                                     </div>
                                     <span class="post-category text-ash mb-0"><?php echo $view['prod_type'] ?></span>
                                 </div>
                                 <h2 class="post-title h3 fs-22"><a href="#" class="link-dark"> <?php echo $view['prod_name']; ?></a></h2>
-                               
+
                                 <p class="price"><?php echo $view['prod_desc']; ?> </p>
                             </div>
                             <!-- /.post-header -->
@@ -135,7 +142,7 @@ if (isset($_SESSION['uniqueid'])) {
                                         success: function(data) {
 
                                             if (data >= 0) {
-                                                var cartbutton = '<a href="./mycart.php" class="btn btn-outline-gradient gradient-1 rounded-pill me-1 mb-2 mb-md-0 " ><i class="uil uil-shopping-cart"></i><span>'+data+' item(s) in cart</span></a>';
+                                                var cartbutton = '<a href="./mycart.php" class="btn btn-outline-gradient gradient-1 rounded-pill me-1 mb-2 mb-md-0 " ><i class="uil uil-shopping-cart"></i><span>' + data + ' item(s) in cart</span></a>';
                                                 $("#cart_button").html(cartbutton);
                                                 $("#cart_notify").html(data);
                                                 $("#<?php echo $view['prod_sku']; ?>").hide();
@@ -166,17 +173,29 @@ if (isset($_SESSION['uniqueid'])) {
                                         success: function(data) {
 
                                             if (data >= 0) {
-                                                var cartbutton = '<a href="./mycart.php" class="btn btn-outline-gradient gradient-1 rounded-pill me-1 mb-2 mb-md-0 " ><i class="uil uil-shopping-cart"></i><span>'+data+' item(s) in cart</span></a>';
+                                                var cartbutton = '<a href="./mycart.php" class="btn btn-outline-gradient gradient-1 rounded-pill me-1 mb-2 mb-md-0 " ><i class="uil uil-shopping-cart"></i><span>' + data + ' item(s) in cart</span></a>';
                                                 $("#cart_button").html(cartbutton);
                                                 $("#cart_notify").html(data);
                                                 $("#<?php echo $view['prod_sku']; ?>").show();
                                                 $("#<?php echo $view['prod_sku'] . 'removed'; ?>").hide();
-                                                                                                   
+
                                             } else {
                                                 alert(data);
                                             }
                                         }
                                     });
+                                }
+
+                                function <?php echo $view['prod_sku'].'download'; ?>() {
+                                    var link = document.createElement("a");
+                                    var file_ref = '<?php echo $view['prod_path']?>';
+                                    var extension = file_ref.substring(file_ref.lastIndexOf('.') + 1);
+                                    var name = '<?php echo $view['prod_name']?>'+extension;
+                                    link.setAttribute("download", name);
+                                    link.href = file_ref;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    link.remove();
                                 }
                             </script>
                         </div>
