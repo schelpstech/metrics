@@ -179,11 +179,11 @@ $login_view = $model->getRows($tblName, $conditions);
 if (isset($_POST['delete_incomplete'])) {
   try {
     $tblName = "trans_tbl";
-    $conditions = "
-      trans_status = 0 
-      AND trans_date IS NULL 
-      AND trans_time < DATE_SUB(NOW(), INTERVAL 7 DAY)
-    ";
+    $conditions = [
+      'where' => [
+        'trans_status' => 0,
+        'trans_date' => "IS NULL"
+      ]];
 
     $deleted = $model->delete($tblName, $conditions);
 

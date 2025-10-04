@@ -259,29 +259,40 @@ class Model
      * @param string name of the table 
      * @param array where condition on deleting data 
      */
-    public function delete($table, $condition = "1=1")
-    {
-        $params = [];
+public function delete($table, $condition = "1=1")
+{
+    $params = [];
+    $conditionSql = "";
 
-        if (is_array($condition)) {
-            $whereParts = [];
-            foreach ($condition as $key => $value) {
+    if (is_array($condition)) {
+        // check if user passed ["where" => [ ... ]]
+        if (isset($condition['where']) && is_array($condition['where'])) {
+            $condition = $condition['where'];
+        }
+
+        $whereParts = [];
+        foreach ($condition as $key => $value) {
+            if (strtoupper($value) === "IS NULL") {
+                $whereParts[] = "$key IS NULL";
+            } else {
                 $paramKey = ":where_" . $key;
                 $whereParts[] = "$key = $paramKey";
-                $params[$paramKey] = $value; // bind value later
+                $params[$paramKey] = $value;
             }
-            $conditionSql = implode(" AND ", $whereParts);
-        } else {
-            $conditionSql = $condition; // raw string condition
         }
-
-        $sql = "DELETE FROM {$table} WHERE {$conditionSql}";
-        $stmt = $this->db->prepare($sql);
-
-        foreach ($params as $param => $val) {
-            $stmt->bindValue($param, $val);
-        }
-
-        return $stmt->execute();
+        $conditionSql = implode(" AND ", $whereParts);
+    } else {
+        $conditionSql = $condition; // raw string condition
     }
+
+    $sql = "DELETE FROM {$table} WHERE {$conditionSql}";
+    $stmt = $this->db->prepare($sql);
+
+    foreach ($params as $param => $val) {
+        $stmt->bindValue($param, $val);
+    }
+
+    return $stmt->execute();
+}
+
 }
