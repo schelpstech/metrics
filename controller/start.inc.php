@@ -11,7 +11,7 @@ include_once 'Model.class.php';
 $db_host = 'localhost';
 $db_user = 'root';
 $db_pass = '';
-$db_name = 'crunch_mart_%@001';
+$db_name = 'crunch';
 
 // connect to database
 try {

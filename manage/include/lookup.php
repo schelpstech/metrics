@@ -166,7 +166,7 @@ $login_count_today = $model->getRows($tblName, $conditions);
 //Get Active Users
 
 $conditions = array(
-  'select' => 'DISTINCT userid',
+  'select' => 'DISTINCT userid, login_date',
   'where' => array(
     'login_status' => 1,
   ),
@@ -174,3 +174,22 @@ $conditions = array(
   'limit' => '5',
 );
 $login_view = $model->getRows($tblName, $conditions);
+
+
+if (isset($_POST['delete_incomplete'])) {
+  try {
+    $tblName = "trans_tbl";
+    $conditions = array(
+      'trans_date'   => "IS NULL",
+      'trans_status' => 0,
+      'trans_amount' => 0
+    );
+
+    $model->delete($tblName, $conditions);
+
+    echo "<script>alert('Incomplete orders from the last week deleted successfully.');</script>";
+  } catch (PDOException $e) {
+    echo "<script>alert('Error deleting records: " . $e->getMessage() . "');</script>";
+  }
+}
+

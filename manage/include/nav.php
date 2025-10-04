@@ -6,7 +6,7 @@ include "lookup.php";
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <meta description="CrunchEconometrix">
-  <title>CrunchEconometrix -  Manager</title>
+  <title>CrunchEconometrix - Manager</title>
   <!-- General CSS Files -->
   <link rel="stylesheet" href="assets/css/app.min.css">
   <link rel="stylesheet" href="assets/bundles/bootstrap-social/bootstrap-social.css">
@@ -23,9 +23,9 @@ include "lookup.php";
   <link rel="stylesheet" href="assets/css/custom.css">
   <link rel='shortcut icon' type='image/x-icon' href='../../assets/img/web/weblogo.png' />
   <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  
+
 </head>
 
 
@@ -42,11 +42,11 @@ include "lookup.php";
             <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
                 <i data-feather="maximize"></i>
               </a></li>
-            
+
           </ul>
         </div>
         <ul class="navbar-nav navbar-right">
-          
+
           <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
               class="nav-link notification-toggle nav-link-lg"><i data-feather="bell" class="bell"></i>
             </a>
@@ -57,19 +57,19 @@ include "lookup.php";
                   <a href="#">Account Activities</a>
                 </div>
               </div>
-              
-              
+
+
               <div class="dropdown-footer text-center">
                 <a href="#">View All <i class="fas fa-chevron-right"></i></a>
               </div>
             </div>
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown"
-              class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="../../assets/img/web/weblogo.png" 
+              class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="../../assets/img/web/weblogo.png"
                 class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
               <div class="dropdown-title">Hello Admin</div>
-             
+
               <div class="dropdown-divider"></div>
               <a href="../../app/logout.php" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
                 Logout
@@ -81,7 +81,7 @@ include "lookup.php";
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">  <span
+            <a href="index.html"> <span
                 class="logo-name"><small>CrunchEconometrix</small></span>
             </a>
           </div>
@@ -93,7 +93,7 @@ include "lookup.php";
             <li class="dropdown">
               <a href="#" class="nav-link"><i data-feather="feather"></i><span>Admin Profile</span></a>
             </li>
-            
+
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
                   data-feather="user-check"></i><span>Manage Users</span></a>
@@ -120,13 +120,24 @@ include "lookup.php";
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                  data-feather="grid"></i><span>Manage Sales</span></a>
+              <a href="#" class="menu-toggle nav-link has-dropdown">
+                <i data-feather="grid"></i><span>Manage Sales</span>
+              </a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="salesboard.php">Dashboard</a></li>
                 <li><a class="nav-link" href="coupon.php">Sales Coupon</a></li>
+                <li>
+                  <form method="POST" style="display:inline;">
+                    <button type="submit" name="delete_incomplete"
+                      onclick="return confirm('Are you sure you want to delete all incomplete orders from the last week?');"
+                      class="btn btn-danger btn-sm w-100 mt-2">
+                      Delete Incomplete Orders
+                    </button>
+                  </form>
+                </li>
               </ul>
-            </li> 
+            </li>
+
           </ul>
         </aside>
       </div>

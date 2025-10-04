@@ -124,8 +124,11 @@ include "../include/nav.php";
                           <div class="list-inline text-center">
                             <div class="list-inline-item p-r-30"><i data-feather="arrow-up-circle"
                                 class="col-green"></i>
+                                <h5 class="m-b-0"><?php echo $count_visitors_today['count']; ?></h5>
+<h5 class="m-b-0"><?php echo round((( intval($count_visitors_today['count']) / intval($count_visitors)) * 100), 2); ?>%</h5>
+
                               <h5 class="m-b-0"><?php echo  $count_visitors_today ?></h5>
-                              <h5 class="m-b-0"><?php echo round((( $count_visitors_today / $count_visitors) * 100),2) ?>%</h5>
+                              <h5 class="m-b-0"><?php echo round((( intval($count_visitors_today) / intval($count_visitors)) * 100),2) ?>%</h5>
                               <p class="text-muted font-14 m-b-0"><small>Website Visitors Today</small> </p>
                             </div>
                           </div>

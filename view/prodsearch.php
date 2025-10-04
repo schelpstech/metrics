@@ -3,82 +3,81 @@ include '../assets/php/header.php';
 include '../assets/php/navbar.php';
 require_once('../app/utility.php');
 
-// -------------------
-// Cart token setup
-// -------------------
-if (isset($_SESSION['cart_token'])) {
-    $cart_token = $_SESSION['cart_token'];
-} else {
-    $cart_token = generateRandomText();
-    $_SESSION['cart_token'] = $cart_token;
-}
-
-if (isset($_SESSION['uniqueid'])) {
-    $cart_user = $_SESSION['uniqueid'];
-} elseif (isset($_SESSION['cart_user'])) {
-    $cart_user = $_SESSION['cart_user'];
-} else {
-    $cart_user = 'guest_' . $cart_token;
-    $_SESSION['cart_user'] = $cart_user;
-}
-
-// -------------------
-// Pagination + Sort
-// -------------------
-$limit  = 15;
-$page   = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$page   = max($page, 1);
+$limit = 15;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = max($page, 1);
 $offset = ($page - 1) * $limit;
 
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
 $sort   = isset($_GET['sort']) ? $_GET['sort'] : 'default';
 
-// WHERE condition (only active products)
-$where = array("prod_status" => 1);
+$where = ["prod_status" => 1];
 $extra = "";
+$orderBy = "prod_name ASC";
 
-// Sorting
-switch ($sort) {
-    case 'name_asc':
-        $orderBy = "prod_name ASC";
-        break;
-    case 'name_desc':
-        $orderBy = "prod_name DESC";
-        break;
-    case 'price_low_high':
-        $orderBy = "prod_price ASC";
-        break;
-    case 'price_high_low':
-        $orderBy = "prod_price DESC";
-        break;
-    case 'dataset':
-        $orderBy = "prod_type ASC";
-        break;
-    case 'dofile':
-        $orderBy = "prod_type DESC";
-        break;
-    default:
-        $orderBy = "prod_name ASC";
+/* -------- Search Handling -------- */
+if ($search !== '') {
+    $safeSearch = addslashes($search);
+    $extra .= " AND (prod_name LIKE '%{$safeSearch}%' OR prod_desc LIKE '%{$safeSearch}%')";
+
+    // default relevance ordering
+    $orderBy = "
+        CASE
+            WHEN prod_name = '{$safeSearch}' THEN 1
+            WHEN prod_name LIKE '{$safeSearch}%' THEN 2
+            WHEN prod_name LIKE '%{$safeSearch}%' THEN 3
+            ELSE 4
+        END ASC, prod_name ASC
+    ";
 }
 
-// Count total
-$totalItems = $model->countRows("prod_sku", array(
+/* -------- Sort Handling -------- */
+switch ($sort) {
+    case "name_asc":
+        $orderBy = "prod_name ASC";
+        break;
+    case "name_desc":
+        $orderBy = "prod_name DESC";
+        break;
+    case "price_low_high":
+        $orderBy = "prod_price ASC";
+        break;
+    case "price_high_low":
+        $orderBy = "prod_price DESC";
+        break;
+    case "dofile":
+        $extra .= " AND prod_type='dofile'";
+        break;
+    case "dataset":
+        $extra .= " AND prod_type='dataset'";
+        break;
+    default:
+        // if search present, keep relevance order (already set above)
+        if ($search === '') {
+            $orderBy = "prod_name ASC";
+        }
+}
+
+/* -------- Count + Fetch -------- */
+$totalItems = $model->countRows("prod_sku", [
     "where" => $where,
     "extra" => $extra
-));
-$totalPages = $totalItems ? ceil($totalItems / $limit) : 1;
+]);
+$totalPages = ceil($totalItems / $limit);
 
-// Fetch products
-$productview = $model->getRows("prod_sku", array(
-    "where"    => $where,
-    "extra"    => $extra,
+$productview = $model->getRows("prod_sku", [
+    "where" => $where,
+    "extra" => $extra,
     "order_by" => $orderBy,
-    "limit"    => $limit,
-    "start"    => $offset
-));
+    "limit" => $limit,
+    "start" => $offset
+]);
 ?>
 
 <section class="wrapper bg-light">
     <div class="container py-14 py-md-16">
+
+
         <!-- Header -->
         <div class="row align-items-center mb-10 position-relative zindex-1">
             <div class="col-md-8 col-lg-9 col-xl-8 col-xxl-7 pe-xl-20">
@@ -86,7 +85,7 @@ $productview = $model->getRows("prod_sku", array(
                 <nav class="d-inline-block" aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="./index.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Shop :: Access all free and premium datasets and dofiles</li>
+                        <li class="breadcrumb-item active" aria-current="page"> <a href="./datashop.php">Shop</a> :: Access all free and premium datasets and dofiles</li>
                     </ol>
                 </nav>
             </div>
@@ -150,6 +149,10 @@ $productview = $model->getRows("prod_sku", array(
             </div>
 
         </div>
+
+        <h2 class="display-6">
+            Search Results for "<?php echo htmlspecialchars($search); ?>"
+        </h2>
 
 
 

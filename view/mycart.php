@@ -21,16 +21,16 @@ if (isset($_SESSION['uniqueid']) && isset($_SESSION['cart_token']) && isset($_SE
   $action = 'No Item in Cart';
 }
 
- //Get public key
- $tblName = 'payment';
- $conditions = array(
-   'return_type' => 'single',
-   'where' => array(
-     'payerid' => 1,
-   )
+//Get public key
+$tblName = 'payment';
+$conditions = array(
+  'return_type' => 'single',
+  'where' => array(
+    'payerid' => 1,
+  )
 
- );
- $payment_gateway = $model->getRows($tblName, $conditions);
+);
+$payment_gateway = $model->getRows($tblName, $conditions);
 ?>
 
 
@@ -52,13 +52,13 @@ if (isset($_SESSION['uniqueid']) && isset($_SESSION['cart_token']) && isset($_SE
 <section class="wrapper bg-light">
   <div class="container pt-12 pt-md-14 pb-14 pb-md-16">
     <div class="row gx-md-8 gx-xl-12 gy-12">
-    <?php
+      <?php
 
-if (isset($_SESSION['msg'])) {
-  printf('<b>%s</b>', $_SESSION['msg']);
-  unset($_SESSION['msg']);
-}
-?>
+      if (isset($_SESSION['msg'])) {
+        printf('<b>%s</b>', $_SESSION['msg']);
+        unset($_SESSION['msg']);
+      }
+      ?>
       <div class="col-lg-8">
         <div class="table-responsive">
           <table class="table text-center shopping-cart">
@@ -73,16 +73,19 @@ if (isset($_SESSION['msg'])) {
                 <th>
                   <div class="h4 mb-0">Price</div>
                 </th>
+                <th>
+                  <div class="h4 mb-0">Remove</div>
+                </th>
 
               </tr>
             </thead>
             <tbody>
 
-              <!-- Get Items in Cart  -->
               <?php
               $count_product = 0;
               $sum_prod = 0;
               $count = 1;
+
               $tblName = 'cart_log';
               $conditions = array(
                 'where' => array(
@@ -90,65 +93,66 @@ if (isset($_SESSION['msg'])) {
                   'token' => !empty($cart_token) ? $cart_token : 0,
                   'item_status' => 1,
                 )
-
               );
               $checkcart = $model->getRows($tblName, $conditions);
 
               if (!empty($checkcart)) {
                 foreach ($checkcart as $view) {
-                  $prod_sku =  $view['prod_sku'];
+                  $prod_sku = $view['prod_sku'];
 
-                  //Get Product Details
-                  $tblName = 'prod_sku';
-                  $conditions = array(
+                  // Fetch product details once
+                  $check_product = $model->getRows('prod_sku', [
                     'return_type' => 'single',
-                    'where' => array(
-                      'prod_sku' => $prod_sku,
-                    )
-                  );
-                  $condition = array(
-                    'return_type' => 'count',
-                    'where' => array(
-                      'prod_sku' => $prod_sku,
-                    )
-                  );
-                  $sum_condition = array(
-                    'return_type' => 'single',
-                    'select' => 'SUM(prod_price) as sum_price',
-                    'where' => array(
-                      'prod_sku' => $prod_sku,
-                    )
-                  );
-                  $check_product = $model->getRows($tblName, $conditions);
-                  $count_prod = $model->getRows($tblName, $condition);
-                  $count_product += $count_prod;
-                  $sum_product = $model->getRows($tblName, $sum_condition);
-                  $sum_prod += $sum_product['sum_price'];
+                    'where' => ['prod_sku' => $prod_sku]
+                  ]);
+
+                  if ($check_product) {
+                    $count_product++;
+                    $sum_prod += (float) $check_product['prod_price'];
               ?>
-                  <tr>
-                    <td>
-                      <?php echo $count++; ?>
-                    </td>
-                    <td class="option text-start d-flex flex-row align-items-center ps-0">
-                      <figure class="rounded w-17"><a href="#"><img src="<?php echo $check_product['prod_img']; ?>" srcset="<?php echo $check_product['prod_img']; ?>" alt="<?php echo $check_product['prod_type']; ?>" /></a></figure>
-                      <div class="w-100 ms-4">
-                        <h3 class="post-title h6 lh-xs mb-1"><a href="#" class="link-dark"> <?php echo $check_product['prod_name']; ?></a></h3>
-                        <div class="small"> <?php echo $check_product['prod_type']; ?></div>
-                        <div class="small"> One time download access</div>
-
-                      </div>
-                    </td>
-                    <td>
-                      <p class="price"> <ins><span class="amount">&#8358;<?php echo !empty($check_product['prod_price']) ? $check_product['prod_price'] : 0; ?></span></ins></p>
-                    </td>
-
-                  </tr>
+                    <tr>
+                      <td><?php echo $count++; ?></td>
+                      <td class="option text-start d-flex flex-row align-items-center ps-0">
+                        <figure class="rounded w-17">
+                          <a href="#">
+                            <img src="<?php echo $check_product['prod_img']; ?>"
+                              alt="<?php echo htmlspecialchars($check_product['prod_type']); ?>" />
+                          </a>
+                        </figure>
+                        <div class="w-100 ms-4">
+                          <h3 class="post-title h6 lh-xs mb-1">
+                            <a href="#" class="link-dark"><?php echo $check_product['prod_name']; ?></a>
+                          </h3>
+                          <div class="small"><?php echo $check_product['prod_type']; ?></div>
+                          <div class="small">One time download access</div>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="price">
+                          <ins>
+                            <span class="amount">&#8358;<?php echo number_format($check_product['prod_price']); ?></span>
+                          </ins>
+                        </p>
+                      </td>
+                      <td>
+                        <!-- Remove Button -->
+                        <form method="post" action="../app/managecart.php" onsubmit="return confirm('Remove this item?');">
+                          <input type="hidden" name="action" value="remove">
+                          <input type="hidden" name="prod_sku" value="<?php echo $prod_sku; ?>">
+                          <input type="hidden" name="user_id" value="<?php echo $cart_user; ?>">
+                          <input type="hidden" name="token" value="<?php echo $cart_token; ?>">
+                          <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                        </form>
+                      </td>
+                    </tr>
               <?php
+                  }
                 }
               } else {
-                echo 'no item in Cart';
+                echo '<tr><td colspan="3">No item in Cart</td></tr>';
               }
               ?>
+
 
             </tbody>
           </table>

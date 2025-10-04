@@ -25,7 +25,7 @@ if (isset($_SESSION['uniqueid'])) {
 // -------------------
 // Pagination + Sort
 // -------------------
-$limit  = 15;
+$limit  = 20;
 $page   = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $page   = max($page, 1);
 $offset = ($page - 1) * $limit;
@@ -111,45 +111,45 @@ $productview = $model->getRows("prod_sku", array(
 
 
         <!-- Search + Sort on the same line -->
-        <div class="row align-items-center mb-4" style="position: relative; z-index: 9999;">
+       <div class="row align-items-center mb-4" style="position: relative; z-index: 9999;">
 
-            <!-- Search Form -->
-            <div class="col-md-6 mb-3 mb-md-0">
-                <form method="get" action="prodsearch.php" class="w-100">
-                    <div class="input-group shadow-sm">
-                        <span class="input-group-text bg-white border-end-0">
-                            <i class="uil uil-search"></i>
-                        </span>
-                        <input type="text"
-                            name="search"
-                            class="form-control border-start-0"
-                            placeholder="Search products..."
-                            autocomplete="off">
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </div>
-                </form>
+    <!-- Search Form -->
+    <div class="col-md-6 mb-3 mb-md-0">
+        <form method="get" action="prodsearch.php" class="w-100">
+            <div class="input-group shadow-sm">
+                <span class="input-group-text bg-white border-end-0">
+                    <i class="uil uil-search"></i>
+                </span>
+                <input type="text"
+                       name="search"
+                       class="form-control border-start-0"
+                       placeholder="Search products..."
+                       autocomplete="off">
+                <button type="submit" class="btn btn-primary">Search</button>
             </div>
+        </form>
+    </div>
 
-            <!-- Sort Form -->
-            <div class="col-md-6 text-md-end">
-                <form method="get" action="datashop.php" id="sortForm" class="d-inline-block">
-                    <div class="input-group shadow-sm">
-                        <select name="sort" class="form-select"
-                            onchange="document.getElementById('pageInput').value=1; this.form.submit();">
-                            <option value="default" <?php if ($sort == 'default') echo 'selected'; ?>>Sort by</option>
-                            <option value="name_asc" <?php if ($sort == 'name_asc') echo 'selected'; ?>>Name (A–Z)</option>
-                            <option value="name_desc" <?php if ($sort == 'name_desc') echo 'selected'; ?>>Name (Z–A)</option>
-                            <option value="price_low_high" <?php if ($sort == 'price_low_high') echo 'selected'; ?>>Price (Low → High)</option>
-                            <option value="price_high_low" <?php if ($sort == 'price_high_low') echo 'selected'; ?>>Price (High → Low)</option>
-                            <option value="dofile" <?php if ($sort == 'dofile') echo 'selected'; ?>>DoFiles</option>
-                            <option value="dataset" <?php if ($sort == 'dataset') echo 'selected'; ?>>Datasets</option>
-                        </select>
-                        <input type="hidden" name="page" id="pageInput" value="<?php echo $page; ?>">
-                    </div>
-                </form>
+    <!-- Sort Form -->
+    <div class="col-md-6 text-md-end">
+        <form method="get" action="datashop.php" id="sortForm" class="d-inline-block">
+            <div class="input-group shadow-sm">
+                <select name="sort" class="form-select"
+                        onchange="document.getElementById('pageInput').value=1; this.form.submit();">
+                    <option value="default" <?php if ($sort == 'default') echo 'selected'; ?>>Sort by</option>
+                    <option value="name_asc" <?php if ($sort == 'name_asc') echo 'selected'; ?>>Name (A–Z)</option>
+                    <option value="name_desc" <?php if ($sort == 'name_desc') echo 'selected'; ?>>Name (Z–A)</option>
+                    <option value="price_low_high" <?php if ($sort == 'price_low_high') echo 'selected'; ?>>Price (Low → High)</option>
+                    <option value="price_high_low" <?php if ($sort == 'price_high_low') echo 'selected'; ?>>Price (High → Low)</option>
+                    <option value="dofile" <?php if ($sort == 'dofile') echo 'selected'; ?>>DoFiles</option>
+                    <option value="dataset" <?php if ($sort == 'dataset') echo 'selected'; ?>>Datasets</option>
+                </select>
+                <input type="hidden" name="page" id="pageInput" value="<?php echo $page; ?>">
             </div>
+        </form>
+    </div>
 
-        </div>
+</div>
 
 
 

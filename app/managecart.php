@@ -41,9 +41,9 @@ if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
                 )
             );
             $check = $model->countRows($tblName, $conditons);
-            unset ($_SESSION['cart_check'] );
+            unset($_SESSION['cart_check']);
             $_SESSION['cart_check'] = $check;
-         echo $check;
+            echo $check;
         } else {
             echo 'Unable to add item to cart ';
         }
@@ -74,12 +74,12 @@ if (isset($_POST['action']) && $_POST['action'] === 'add_to_cart') {
                 )
             );
             $check = $model->countRows($tblName, $conditons);
-            unset ($_SESSION['cart_check'] );
+            unset($_SESSION['cart_check']);
             $_SESSION['cart_check'] = $check;
             echo $check;
         }
     }
-}//delete cart item
+} //delete cart item
 elseif (isset($_POST['action']) && $_POST['action'] === 'delete_from_cart') {
     // Retrieve form input
     $prod_sku = trim($_POST['product_sku']);
@@ -125,7 +125,7 @@ elseif (isset($_POST['action']) && $_POST['action'] === 'delete_from_cart') {
                 )
             );
             $check = $model->countRows($tblName, $conditons);
-            unset ($_SESSION['cart_check'] );
+            unset($_SESSION['cart_check']);
             $_SESSION['cart_check'] = $check;
             echo $check;
         } else {
@@ -135,35 +135,55 @@ elseif (isset($_POST['action']) && $_POST['action'] === 'delete_from_cart') {
 
         echo 'Item not found in Cart';
     }
-} elseif(isset($_POST['action']) && $_POST['action'] === ' Record Tran.saction') {
-        // Retrieve form input
-        $payable = trim($_POST['payable']);
-        $user = trim($_POST['user']);
-        $cart = trim($_POST['cart']);
-        $qty = trim($_POST['qty']);
-        $ref = trim($_POST['ref']);
-        $tblName = 'trans_tbl';
+} elseif (isset($_POST['action']) && $_POST['action'] === ' Record Tran.saction') {
+    // Retrieve form input
+    $payable = trim($_POST['payable']);
+    $user = trim($_POST['user']);
+    $cart = trim($_POST['cart']);
+    $qty = trim($_POST['qty']);
+    $ref = trim($_POST['ref']);
+    $tblName = 'trans_tbl';
 
-        $cartData = array(
+    $cartData = array(
 
-            'trans_amount' => $payable,
-            'trans_user' => $user,
-            'trans_cart' => $cart,
-            'trans_qty' => $qty,
-            'trans_ref' => $ref,
-            'trans_status' => 0,
-        );
-        $insert = $model->insert_data($tblName, $cartData);
+        'trans_amount' => $payable,
+        'trans_user' => $user,
+        'trans_cart' => $cart,
+        'trans_qty' => $qty,
+        'trans_ref' => $ref,
+        'trans_status' => 0,
+    );
+    $insert = $model->insert_data($tblName, $cartData);
 
-        if ($insert) {
-            echo '11';
+    if ($insert) {
+        echo '11';
+    } else {
+        echo 00;
+    }
+} elseif (isset($_POST['action']) && $_POST['action'] === 'remove') {
+    $prod_sku = $_POST['prod_sku'];
+    $user_id  = $_POST['user_id'];
+    $token    = $_POST['token'];
 
-        }
-        else{
-            echo 00;
-        }
-}
+    $tblName = "cart_log";
+    $conditions = array(
+        'where' => array(
+            'user_id' => $user_id,
+            'token'   => $token,
+            'prod_sku' => $prod_sku
+        )
+    );
 
-else {
+    // Update item_status = 0 (soft delete) or delete row
+    $deleted = $model->delete($tblName, $conditions['where']);
+
+    if ($deleted) {
+        $_SESSION['msg'] = "Item removed from cart.";
+    } else {
+        $_SESSION['msg'] = "Failed to remove item.";
+    }
+    header("Location: ../view/mycart.php");
+    exit;
+} else {
     echo 'We cannot verify your request. Try Again!';
 }
