@@ -164,8 +164,8 @@ class Model
         }
 
         if (!empty($conditions['group_by'])) {
-    $sql .= " GROUP BY " . $conditions['group_by'];
-}
+            $sql .= " GROUP BY " . $conditions['group_by'];
+        }
 
 
         // Debug (optional)
@@ -257,29 +257,31 @@ class Model
     /* 
      * Delete data from the database 
      * @param string name of the table 
-     * @param array where condition on deleting data
-     * @return bool
+     * @param array where condition on deleting data 
      */
-  public function delete($table, $conditions)
-{
-    $whereSql = '';
-    if (!empty($conditions) && is_array($conditions)) {
-        $whereSql .= ' WHERE ';
-        $i = 0;
-        foreach ($conditions as $key => $value) {
-            $pre = ($i > 0) ? ' AND ' : '';
-            
-            // if value starts with RAW: don't quote
-            if (strpos($value, 'RAW:') === 0) {
-                $whereSql .= $pre . $key . ' ' . substr($value, 4);
-            } else {
-                $whereSql .= $pre . $key . " = '" . $value . "'";
-            }
-            $i++;
-        }
-    }
-    $sql = "DELETE FROM " . $table . $whereSql;
-    return $this->db->exec($sql) ?: false;
-}
+    public function delete($table, $condition = "1=1")
+    {
+        $params = [];
 
+        if (is_array($condition)) {
+            $whereParts = [];
+            foreach ($condition as $key => $value) {
+                $paramKey = ":where_" . $key;
+                $whereParts[] = "$key = $paramKey";
+                $params[$paramKey] = $value; // bind value later
+            }
+            $conditionSql = implode(" AND ", $whereParts);
+        } else {
+            $conditionSql = $condition; // raw string condition
+        }
+
+        $sql = "DELETE FROM {$table} WHERE {$conditionSql}";
+        $stmt = $this->db->prepare($sql);
+
+        foreach ($params as $param => $val) {
+            $stmt->bindValue($param, $val);
+        }
+
+        return $stmt->execute();
+    }
 }
