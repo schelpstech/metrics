@@ -51,7 +51,7 @@ include "../include/nav.php";
                                                     <td> <?php echo $view['prod_name']; ?></td>
                                                     <td> <?php echo $view['prod_type']; ?></td>
                                                     <td> <?php echo $view['prod_price']; ?></td>
-                                                    <td> <a href="<?php echo $view['prod_path']; ?>" class="btn btn-icon icon-left btn-info"><i class="far fa-file"></i>Download</a></td>
+                                                    <td> <a href="../<?php echo $view['prod_path']; ?>" class="btn btn-icon icon-left btn-info"><i class="far fa-file"></i>Download</a></td>
                                                     <td> <?php
                                                             if ($view['prod_status'] == 1) {
                                                                 echo '<a href="#" class="btn btn-icon icon-left btn-success"><i class="far fa-check"></i>On Sale</a>';
