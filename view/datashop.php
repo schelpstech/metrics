@@ -25,7 +25,7 @@ if (isset($_SESSION['uniqueid'])) {
 // -------------------
 // Pagination + Sort
 // -------------------
-$limit  = 15;
+$limit  = 100;
 $page   = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $page   = max($page, 1);
 $offset = ($page - 1) * $limit;
@@ -55,6 +55,12 @@ switch ($sort) {
         break;
     case 'dofile':
         $orderBy = "prod_type DESC";
+        break;
+    case 'dataset_free':
+        $orderBy = "prod_type ASC, prod_price ASC";
+        break;
+    case 'dofile_free':
+        $orderBy = "prod_type DESC, prod_price ASC";
         break;
     default:
         $orderBy = "prod_name ASC";
@@ -143,6 +149,8 @@ $productview = $model->getRows("prod_sku", array(
                             <option value="price_high_low" <?php if ($sort == 'price_high_low') echo 'selected'; ?>>Price (High → Low)</option>
                             <option value="dofile" <?php if ($sort == 'dofile') echo 'selected'; ?>>DoFiles</option>
                             <option value="dataset" <?php if ($sort == 'dataset') echo 'selected'; ?>>Datasets</option>
+                            <option value="dataset_free" <?php if ($sort == 'dataset_free') echo 'selected'; ?>>Free Datasets</option>
+                            <option value="dofile_free" <?php if ($sort == 'dofile_free') echo 'selected'; ?>>Free DoFiles</option>
                         </select>
                         <input type="hidden" name="page" id="pageInput" value="<?php echo $page; ?>">
                     </div>
@@ -169,9 +177,9 @@ $productview = $model->getRows("prod_sku", array(
                         $htmlType  = htmlspecialchars($view['prod_type'] ?? '', ENT_QUOTES);
                         $htmlDesc  = htmlspecialchars($view['prod_desc'] ?? '', ENT_QUOTES);
                         ?>
-                        <div class="project item col-md-6 col-xl-4 product-card">
+                        <div class="project item col-md-6 col-xl-3 product-card">
                             <figure class="rounded mb-6 text-center">
-                                <img style="width: 50%; height: 50%;" src="<?php echo $htmlImg; ?>" alt="<?php echo $htmlName; ?>" />
+                                <img style="width: 30%; height: 30%;" src="<?php echo $htmlImg; ?>" alt="<?php echo $htmlName; ?>" />
                                 <?php if ($view['prod_price'] != 0): ?>
                                     <?php
                                     $tblName = 'cart_log';
@@ -215,7 +223,7 @@ $productview = $model->getRows("prod_sku", array(
                                 <?php endif; ?>
                             </figure>
                             <div class="post-header text-center">
-                                <h2 class="post-title h5"><?php echo $htmlName; ?></h2>
+                                <h5 class="post-title h5"><?php echo $htmlName; ?></h5>
                                 <p class="price mb-1">₦<?php echo number_format($view['prod_price']); ?>.00</p>
                                 <span class="text-muted small"><?php echo $htmlType; ?></span>
                                 <p class="mt-2"><?php echo $htmlDesc; ?></p>

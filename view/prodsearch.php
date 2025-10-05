@@ -3,7 +3,7 @@ include '../assets/php/header.php';
 include '../assets/php/navbar.php';
 require_once('../app/utility.php');
 
-$limit = 15;
+$limit = 20;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $page = max($page, 1);
 $offset = ($page - 1) * $limit;
@@ -174,7 +174,7 @@ $productview = $model->getRows("prod_sku", [
                         ?>
                         <div class="project item col-md-6 col-xl-4 product-card">
                             <figure class="rounded mb-6 text-center">
-                                <img style="width: 50%; height: 50%;" src="<?php echo $htmlImg; ?>" alt="<?php echo $htmlName; ?>" />
+                                <img style="width: 30%; height: 30%;" src="<?php echo $htmlImg; ?>" alt="<?php echo $htmlName; ?>" />
                                 <?php if ($view['prod_price'] != 0): ?>
                                     <?php
                                     $tblName = 'cart_log';
@@ -218,7 +218,7 @@ $productview = $model->getRows("prod_sku", [
                                 <?php endif; ?>
                             </figure>
                             <div class="post-header text-center">
-                                <h2 class="post-title h5"><?php echo $htmlName; ?></h2>
+                                <h5 class="post-title h5"><?php echo $htmlName; ?></h5>
                                 <p class="price mb-1">₦<?php echo number_format($view['prod_price']); ?>.00</p>
                                 <span class="text-muted small"><?php echo $htmlType; ?></span>
                                 <p class="mt-2"><?php echo $htmlDesc; ?></p>
