@@ -176,25 +176,6 @@ $conditions = array(
 $login_view = $model->getRows($tblName, $conditions);
 
 
-if (isset($_POST['delete_incomplete'])) {
-  try {
-    $tblName = "trans_tbl";
-    $conditions = [
-      'where' => [
-        'trans_status' => 0,
-        'trans_date' => "IS NULL"
-      ]];
 
-    $deleted = $model->delete($tblName, $conditions);
-
-    if ($deleted) {
-      echo "<script>alert('Incomplete orders older than 7 days deleted successfully.');</script>";
-    } else {
-      echo "<script>alert('No incomplete orders older than 7 days found.');</script>";
-    }
-  } catch (PDOException $e) {
-    echo "<script>alert('Error deleting records: " . $e->getMessage() . "');</script>";
-  }
-}
 
 

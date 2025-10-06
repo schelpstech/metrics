@@ -9,15 +9,15 @@ include "../include/nav.php";
                     <div class="card">
                         <div class="card-header">
                             <h4>CrunchEconometrix :: Product Shelf</h4>
-                            
+
                         </div>
                         <?php
 
-                            if (isset($_SESSION['msg'])) {
-                                printf('<b>%s</b>', $_SESSION['msg']);
-                                unset($_SESSION['msg']);
-                            }
-                            ?>
+                        if (isset($_SESSION['msg'])) {
+                            printf('<b>%s</b>', $_SESSION['msg']);
+                            unset($_SESSION['msg']);
+                        }
+                        ?>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover" id="tableExport" style="width:100%;">
@@ -51,7 +51,25 @@ include "../include/nav.php";
                                                     <td> <?php echo $view['prod_name']; ?></td>
                                                     <td> <?php echo $view['prod_type']; ?></td>
                                                     <td> <?php echo $view['prod_price']; ?></td>
-                                                    <td> <a href="../<?php echo $view['prod_path']; ?>" class="btn btn-icon icon-left btn-info"><i class="far fa-file"></i>Download</a></td>
+                                                    <td>
+                                                        <a href="../<?php echo $view['prod_path']; ?>"
+                                                            class="btn btn-icon icon-left btn-info">
+                                                            <i class="far fa-file"></i>Download
+                                                        </a>
+
+                                                        <!-- hidden input for link -->
+                                                        <input type="text"
+                                                            hidden
+                                                            value="https://cruncheconometrix.com/view/productview.php?prod_sku=<?php echo $view['prod_sku'] ?>"
+                                                            id="linkput<?php echo $view['prod_sku'] ?>">
+
+                                                        <!-- copy link button -->
+                                                        <a class="btn btn-primary btn-icon btn-icon-start rounded"
+                                                            onclick="copylink('<?php echo $view['prod_sku'] ?>')">
+                                                            <i class="uil uil-copy"></i> Copy Link
+                                                        </a>
+                                                    </td>
+
                                                     <td> <?php
                                                             if ($view['prod_status'] == 1) {
                                                                 echo '<a href="#" class="btn btn-icon icon-left btn-success"><i class="far fa-check"></i>On Sale</a>';
@@ -78,6 +96,19 @@ include "../include/nav.php";
             </div>
         </div>
     </section>
+    <script>
+        function copylink(sku) {
+            var copyText = document.getElementById("linkput" + sku);
+            copyText.type = "text"; // make visible for select
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // for mobile
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                alert("Link Copied: " + copyText.value);
+            });
+            copyText.type = "hidden"; // hide back
+        }
+    </script>
+
     <?php
     include "../include/footer.php";
     ?>

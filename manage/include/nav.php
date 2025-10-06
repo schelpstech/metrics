@@ -125,16 +125,8 @@ include "lookup.php";
               </a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="salesboard.php">Dashboard</a></li>
-                <li><a class="nav-link" href="coupon.php">Sales Coupon</a></li>
-                <li>
-                  <form method="POST" style="display:inline;">
-                    <button type="submit" name="delete_incomplete"
-                      onclick="return confirm('Are you sure you want to delete all incomplete orders from the last week?');"
-                      class="btn btn-danger btn-sm w-100 mt-2">
-                      Delete Incomplete Orders
-                    </button>
-                  </form>
-                </li>
+                <li><a class="nav-link" href="incompletesale.php">Incomplete Orders</a></li>
+
               </ul>
             </li>
 

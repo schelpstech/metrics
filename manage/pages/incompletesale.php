@@ -116,7 +116,7 @@ include "../include/nav.php";
                                             <th>Email Address</th>
                                             <th>Number of Items</th>
                                             <th>Amount</th>
-                                            <th>Status</th>
+                                            <th>Delete</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -124,7 +124,7 @@ include "../include/nav.php";
                                         <?php
                                         $count = 1;
                                         $tablename = 'trans_tbl';
-                                        $transview = $model->getRows($tablename, ['where' => ['trans_status' => 1]]);
+                                        $transview = $model->getRows($tablename, ['where' => ['trans_status' => 0]]);
                                         foreach ($transview as $view) {
                                             $tablename = 'crunch_user';
                                             $conditions = array(
@@ -144,13 +144,15 @@ include "../include/nav.php";
                                                 <td> <?php echo ucwords($view['trans_user']); ?></td>
                                                 <td> <?php echo strtolower($view['trans_qty']); ?></td>
                                                 <td> <?php echo strtolower($view['trans_amount']); ?></td>
-                                                <td> <?php
-                                                        if ($view['trans_status'] == 1) {
-                                                            echo '<a href="#" class="btn btn-icon icon-left btn-success">Success</a>';
-                                                        } else {
-                                                            echo '<a href="#" class="btn btn-icon icon-left btn-danger">Incomplete</a>';
-                                                        }
-                                                        ?>
+                                                <td>
+                                                    <form action="../../app/managecart.php" method="POST" style="display:inline;">
+                                                        <input type="hidden" name="trans_ref" value="<?php echo $view['trans_ref']; ?>">
+                                                        <button type="submit" name="action" value="delete_incomplete"
+                                                            onclick="return confirm('Are you sure you want to delete all incomplete orders from the last week?');"
+                                                            class="btn btn-danger btn-sm w-100 mt-2">
+                                                            Delete Incomplete Order
+                                                        </button>
+                                                    </form>
                                                 </td>
                                                 <td> <a href="./translog.php?trans_ref=<?php echo $view['trans_ref']; ?>" class="btn btn-info">View</a></td>
 
