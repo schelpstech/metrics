@@ -33,37 +33,46 @@ $offset = ($page - 1) * $limit;
 $sort   = isset($_GET['sort']) ? $_GET['sort'] : 'default';
 
 // WHERE condition (only active products)
-$where = array("prod_status" => 1);
+
 $extra = "";
 
 // Sorting
 switch ($sort) {
     case 'name_asc':
         $orderBy = "prod_name ASC";
+        $where = array("prod_status" => 1);
         break;
     case 'name_desc':
         $orderBy = "prod_name DESC";
+        $where = array("prod_status" => 1);
         break;
     case 'price_low_high':
         $orderBy = "prod_price ASC";
+        $where = array("prod_status" => 1);
         break;
     case 'price_high_low':
         $orderBy = "prod_price DESC";
+        $where = array("prod_status" => 1);
         break;
     case 'dataset':
         $orderBy = "prod_type ASC";
+        $where = array("prod_type" => "dataset", "prod_status" => 1);
         break;
     case 'dofile':
         $orderBy = "prod_type DESC";
+        $where = array("prod_type" => "dofile", "prod_status" => 1);
         break;
     case 'dataset_free':
         $orderBy = "prod_type ASC, prod_price ASC";
+        $where = array("prod_type" => "dataset", "prod_status" => 1, "prod_price" => 0);
         break;
     case 'dofile_free':
         $orderBy = "prod_type DESC, prod_price ASC";
+        $where = array("prod_type" => "dofile", "prod_status" => 1, "prod_price" => 0);
         break;
     default:
         $orderBy = "prod_name ASC";
+        $where = array("prod_status" => 1);
 }
 
 // Count total
