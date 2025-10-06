@@ -15,7 +15,7 @@ $orderBy = "pub_name ASC";
 
 // Search
 if ($searchTerm !== '') {
-    $extra .= " AND (pub_name LIKE '%{$searchTerm}%' OR author LIKE '%{$searchTerm}%' OR pub_year LIKE '%{$searchTerm}%')";
+    $extra .= " AND (pub_name LIKE '%{$searchTerm}%' OR author LIKE '{$searchTerm}%' OR pub_year = '{$searchTerm}')";
 }
 
 // Sorting

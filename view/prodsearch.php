@@ -18,7 +18,7 @@ $orderBy = "prod_name ASC";
 /* -------- Search Handling -------- */
 if ($search !== '') {
     $safeSearch = addslashes($search);
-    $extra .= " AND (prod_name LIKE '%{$safeSearch}%' OR prod_desc LIKE '%{$safeSearch}%')";
+    $extra .= " AND (prod_name LIKE '{$safeSearch}%' OR prod_desc LIKE '%{$safeSearch}%')";
 
     // default relevance ordering
     $orderBy = "
